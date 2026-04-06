@@ -4,165 +4,263 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Arief Budiman | Portfolio</title>
-    <!-- Modern Fonts -->
-    <link href="https://googleapis.com" rel="stylesheet">
-    <script src="https://fontawesome.com" crossorigin="anonymous"></script>
-    <!-- Bootstrap 5 (Lebih Ringan) -->
-    <link href="https://jsdelivr.net" rel="stylesheet">
     
+    <!-- Google Fonts: Inter for professional look -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #1abc9c;
-            --light-bg: #f8f9fa;
+            --accent-color: #00d2ff;
+            --secondary-accent: #3a7bd5;
+            --dark-bg: #0f172a;
         }
-        body { font-family: 'Poppins', sans-serif; color: var(--primary); }
-        
-        /* Hero Section Modern */
-        .top-content {
-            background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
-            color: white;
-            padding: 150px 0 100px;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
-        }
-        .green { color: var(--accent); font-weight: 600; }
-        
-        /* Skills Badge Style */
-        .skill-badge {
-            background: rgba(26, 188, 156, 0.1);
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            padding: 5px 15px;
-            border-radius: 20px;
-            display: inline-block;
-            margin: 5px;
-            transition: 0.3s;
-        }
-        .skill-badge:hover { background: var(--accent); color: white; }
 
-        /* Story Cards */
-        .portfolio-item {
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-            background: white;
-            height: 100%;
-            padding: 20px;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            scroll-behavior: smooth;
         }
-        .portfolio-item:hover { transform: translateY(-10px); }
-        .portfolio-item img { border-radius: 10px; max-height: 100px; object-fit: contain; margin-bottom: 15px; }
-        
-        .btn-custom {
-            background-color: var(--accent);
-            color: white;
-            border-radius: 30px;
-            padding: 10px 25px;
-            text-decoration: none;
+
+        /* Modern Navbar with Blur */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
             transition: 0.3s;
         }
-        .btn-custom:hover { background-color: #16a085; color: white; box-shadow: 0 5px 15px rgba(26, 188, 156, 0.4); }
+
+        /* Hero Section Gradient */
+        .hero-section {
+            background: radial-gradient(circle at top right, #e2e8f0, #ffffff);
+            padding: 160px 0 100px;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-weight: 800;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            background: linear-gradient(to right, #1e293b, var(--secondary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Skills as modern pills */
+        .badge-skill {
+            background: #ffffff;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .badge-skill:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            color: var(--secondary-accent);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Experience Cards */
+        .story-card {
+            background: white;
+            border: none;
+            border-radius: 20px;
+            padding: 30px;
+            height: 100%;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .story-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+
+        .story-card img {
+            height: 60px;
+            width: auto;
+            margin-bottom: 20px;
+            filter: grayscale(100%);
+            transition: 0.3s;
+        }
+
+        .story-card:hover img {
+            filter: grayscale(0%);
+        }
+
+        /* Primary Action Button */
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-accent));
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+            transition: 0.3s;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 210, 255, 0.4);
+            color: white;
+        }
+
+        .section-title {
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
     </style>
 </head>
 
 <body id="page-top">
+
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-3">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light py-3">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#page-top">ARIEF<span class="text-info">.B</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand fw-bold fs-3" href="#page-top">AB<span style="color: var(--accent-color)">.</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto text-uppercase">
+                <ul class="navbar-nav ms-auto gap-lg-4 fw-medium text-uppercase small">
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Story</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">My Story</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-outline-dark px-4 ms-lg-3 rounded-pill" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Intro -->
-    <section class="top-content" id="intro">
-        <div class="container text-center text-md-start">
-            <p class="lead mb-1">Hello, My name is</p>
-            <h1 class="display-3 fw-bold mb-3">Arief Budiman<span class="text-info">;</span></h1>
-            <p class="fs-4 col-lg-8">
-                I am an IT professional specializing in <span class="green">Web Development</span> & 
-                <span class="green">Data Analytics</span> based in Germany.
-            </p>
+    <!-- Hero Section -->
+    <section class="hero-section" id="intro">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <p class="text-uppercase tracking-widest fw-semibold text-muted mb-2">Web Developer & Data Analyst</p>
+                    <h1 class="hero-title mb-4">Arief Budiman</h1>
+                    <p class="fs-4 text-secondary mb-5 pe-lg-5">
+                        Helping people make the right decisions through <span class="text-dark fw-bold">Data Analytics</span> and building robust <span class="text-dark fw-bold">Web Solutions</span>.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#about" class="btn btn-primary-custom">Explore My Work</a>
+                        <a href="https://resume.io" target="_blank" class="btn btn-outline-dark p-3 px-4 rounded-3"><i class="fas fa-download me-2"></i>Resume</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- About -->
-    <section class="py-5" id="about">
+    <!-- About Section -->
+    <section class="py-5 bg-white" id="about">
         <div class="container py-5">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4">
-                    <h2 class="fw-bold mb-4">About Me</h2>
-                    <p class="text-muted">
-                        Graduated from Swiss German University and currently pursuing a Master's degree in 
-                        <strong>Applied Computer Science</strong> at HS Schmalkalden, Germany. 
-                        I bridge the gap between robust web solutions and data-driven decision making.
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="lead text-muted mb-4">
+                        Based in <span class="text-dark fw-bold">Germany</span>, I am currently pursuing an M.Sc. in Applied Computer Science after gaining 2+ years of industrial experience.
                     </p>
-                    <div class="mb-4">
-                        <span class="skill-badge">Python</span>
-                        <span class="skill-badge">SQL</span>
-                        <span class="skill-badge">Flask</span>
-                        <span class="skill-badge">JavaScript</span>
-                        <span class="skill-badge">ASP.NET</span>
-                        <span class="skill-badge">Data Analytics</span>
-                    </div>
-                    <div class="d-flex gap-2">
-                        <a href="https://resume.io" class="btn-custom" target="_blank"><i class="fas fa-file-download me-2"></i>Resume</a>
-                        <a href="#" class="btn btn-outline-secondary rounded-pill px-4">Certificates</a>
+                    <p class="mb-5">
+                        I specialize in bridging the gap between technical development and data-driven insights. Whether it's crafting a backend API or analyzing complex datasets, my goal is efficiency and clarity.
+                    </p>
+                    
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge-skill">Python</span>
+                        <span class="badge-skill">SQL</span>
+                        <span class="badge-skill">Flask</span>
+                        <span class="badge-skill">JavaScript</span>
+                        <span class="badge-skill">ASP.NET</span>
+                        <span class="badge-skill">Excel</span>
+                        <span class="badge-skill">Git</span>
                     </div>
                 </div>
                 <div class="col-lg-5 offset-lg-1 text-center">
-                    <img src="assets/img/avatar.jpg" class="img-fluid rounded-circle shadow-lg border border-5 border-white" alt="Arief" style="max-width: 300px;">
+                    <div class="position-relative d-inline-block">
+                        <img src="assets/img/avatar.jpg" class="img-fluid rounded-4 shadow-lg" alt="Arief" style="max-width: 350px;">
+                        <div class="position-absolute bottom-0 start-0 translate-middle-x bg-white p-3 rounded-3 shadow-sm border ms-5 d-none d-md-block">
+                            <span class="h4 fw-bold mb-0">3+</span><br><small class="text-muted">Years Exp</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Story / Experience -->
-    <section class="py-5 bg-light" id="portfolio">
+    <!-- My Story / Portfolio Section -->
+    <section class="py-5" id="portfolio">
         <div class="container py-5">
-            <h2 class="text-center fw-bold mb-5">Professional Journey</h2>
+            <div class="text-center mb-5">
+                <h2 class="section-title">Professional Journey</h2>
+            </div>
+            
             <div class="row g-4">
-                <!-- Master Degree -->
-                <div class="col-md-4">
-                    <div class="portfolio-item text-center">
-                        <img src="assets/img/Logo-HS-Schmalkalden.jpg" class="img-fluid mb-3" alt="Master">
-                        <h5 class="fw-bold">M.Sc. Applied Computer Science</h5>
-                        <p class="text-muted small">HS Schmalkalden, Germany</p>
-                        <span class="badge bg-primary">2020 - Present</span>
+                <!-- Master -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="story-card">
+                        <img src="assets/img/Logo-HS-Schmalkalden.jpg" alt="HS Schmalkalden">
+                        <h5 class="fw-bold">M.Sc. Computer Science</h5>
+                        <p class="text-info small fw-bold">HS Schmalkalden, Germany</p>
+                        <p class="text-muted small">Focused on applying advanced computational theories to real-world tech problems.</p>
+                        <hr class="opacity-10">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-light text-dark">2020 - Now</span>
+                        </div>
                     </div>
                 </div>
                 <!-- Work -->
-                <div class="col-md-4">
-                    <div class="portfolio-item text-center">
-                        <img src="assets/img/adins_logo.png" class="img-fluid mb-3" alt="Work">
-                        <h5 class="fw-bold">IT Developer</h5>
-                        <p class="text-muted small">Adicipta Inovasi Teknologi</p>
-                        <span class="badge bg-success">2017 - 2020</span>
+                <div class="col-lg-4 col-md-6">
+                    <div class="story-card">
+                        <img src="assets/img/adins_logo.png" alt="Adins">
+                        <h5 class="fw-bold">Fullstack Developer</h5>
+                        <p class="text-info small fw-bold">Adicipta Inovasi Teknologi</p>
+                        <p class="text-muted small">Developed IT solutions for enterprise clients, optimizing backend processes and UI flow.</p>
+                        <hr class="opacity-10">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-light text-dark">2017 - 2020</span>
+                        </div>
                     </div>
                 </div>
                 <!-- Bachelor -->
-                <div class="col-md-4">
-                    <div class="portfolio-item text-center">
-                        <img src="assets/img/sgu_logo.png" class="img-fluid mb-3" alt="SGU">
-                        <h5 class="fw-bold">B.Sc. Information Technology</h5>
-                        <p class="text-muted small">Swiss German University</p>
-                        <span class="badge bg-secondary">2013 - 2017</span>
+                <div class="col-lg-4 col-md-6 mx-auto">
+                    <div class="story-card">
+                        <img src="assets/img/sgu_logo.png" alt="SGU">
+                        <h5 class="fw-bold">B.Sc. Information Tech</h5>
+                        <p class="text-info small fw-bold">Swiss German University</p>
+                        <p class="text-muted small">The foundation of my journey, focusing on core programming and engineering principles.</p>
+                        <hr class="opacity-10">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-light text-dark">2013 - 2017</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Bootstrap Bundle with Popper -->
     <script src="https://jsdelivr.net"></script>
 </body>
 </html>
