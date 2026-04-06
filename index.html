@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arief Budiman | Portfolio</title>
-    <!-- Google Fonts -->
     <link href="https://googleapis.com" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cloudflare.com">
     
     <style>
@@ -16,6 +14,7 @@
             --light: #6b7280;
             --bg-light: #f8fafc;
             --white: #ffffff;
+            --gray-300: #d1d5db;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -27,7 +26,7 @@
             line-height: 1.6;
         }
 
-        /* --- Custom Responsive Navbar --- */
+        /* --- Navbar --- */
         nav {
             background: var(--white);
             display: flex;
@@ -39,22 +38,103 @@
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
+        /* send button */
+        /* Enhanced Send Message Button */
+        .btn-send {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-send:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .btn-send:active {
+            transform: translateY(0);
+        }
+
+        /* Subtle shine effect on hover */
+        .btn-send::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: all 0.6s ease;
+        }
+
+        .btn-send:hover::after {
+            left: 120%;
+        }
+
+        .btn-send i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-send:hover i {
+            transform: translateX(5px) rotate(-10deg);
+        }
+
 
         .logo { font-weight: 700; font-size: 1.5rem; color: var(--primary); text-decoration: none; }
 
+        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
         .nav-links { display: flex; list-style: none; gap: 2rem; }
         .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
 
-        /* Hamburger Menu (Hidden on Desktop) */
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; border: none; background: none; }
-        .hamburger span { width: 25px; height: 3px; background: var(--dark); border-radius: 2px; transition: 0.3s; }
+        /* Language Switcher Active/Inactive */
+        .lang-switcher {
+            display: flex;
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--white);
+        }
 
-        /* Mobile View Styles */
+        .lang-btn {
+            padding: 4px 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.75rem;
+            transition: 0.3s;
+            background: transparent;
+            color: var(--primary);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; border: none; background: none; }
+        .hamburger span { width: 25px; height: 3px; background: var(--dark); border-radius: 2px; }
+
         @media (max-width: 768px) {
             .hamburger { display: flex; }
             .nav-links {
-                display: none; /* Hidden by default on mobile */
+                display: none;
                 flex-direction: column;
                 position: absolute;
                 top: 100%;
@@ -62,36 +142,30 @@
                 width: 100%;
                 background: var(--white);
                 padding: 1rem 0;
-                text-align: center;
                 box-shadow: 0 5px 10px rgba(0,0,0,0.05);
             }
             .nav-links.active { display: flex; }
-            .nav-links li { margin: 1rem 0; }
+            .nav-links li { text-align: center; margin: 10px 0; }
         }
 
-        /* --- Sections --- */
+        /* --- UI Sections --- */
         section { padding: 80px 10%; }
-
-        /* About */
         .about-content { text-align: center; max-width: 800px; margin: 0 auto; }
         .avatar { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 4px solid var(--white); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .btn-group { display: flex; justify-content: center; gap: 15px; margin-top: 2rem; }
         .btn { padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; }
-        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary { background: var(--primary); color: white; border: none; cursor: pointer; }
         .btn-outline { border: 2px solid var(--primary); color: var(--primary); }
 
-        /* Journey Cards */
         .story-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
         .card { background: var(--white); padding: 2.5rem; border-radius: 15px; text-align: center; text-decoration: none; color: inherit; transition: 0.3s; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
         .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .journey-logo { height: 60px; margin-bottom: 1rem; }
 
-        /* Contact Form */
         .contact-form { max-width: 600px; margin: 0 auto; background: var(--white); padding: 2.5rem; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
         .form-group { margin-bottom: 1.2rem; text-align: left; }
         label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
         input, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
-        button[type="submit"] { width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
 
         footer { text-align: center; padding: 3rem; color: var(--light); font-size: 0.9rem; }
     </style>
@@ -101,94 +175,136 @@
     <nav>
         <a href="#" class="logo">Arief.B</a>
         
-        <!-- Three Stripes Toggle -->
-        <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <div class="nav-right">
+            <!-- Language Switcher with Active/Inactive states -->
+            <div class="lang-switcher">
+                <button class="lang-btn active" id="btn-en" onclick="setLanguage('en')">EN</button>
+                <button class="lang-btn" id="btn-de" onclick="setLanguage('de')">DE</button>
+            </div>
 
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#story">My Story</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+            <button class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about" data-key="nav-about">About</a></li>
+                <li><a href="#story" data-key="nav-story">My Story</a></li>
+                <li><a href="#contact" data-key="nav-contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
     <section id="about">
         <div class="about-content">
             <img src="assets/img/avatar.jpg" alt="Arief" class="avatar">
-            <h1>Hello!! My name is Arief Budiman</h1>
-            <p>Graduated from <strong>Swiss German University</strong> as a Bachelor of Information Technology. To gain experience, I started working in an IT Solution company as a developer. After 2 years, I opened a new page in Germany to pursue a Master's degree (M.Sc.). Here are a few things I’ve been working with recently:</p>
+            <h1 data-key="about-title">Hello!! My name is Arief Budiman</h1>
+            <p data-key="about-desc">Graduated from <strong>Swiss German University</strong> as a Bachelor of Information Technology. To gain experience, I started working in an IT Solution company as a developer. After 2 years, I opened a new page in Germany to pursue a Master's degree (M.Sc.). Here are a few things I’ve been working with recently:</p>
             <div class="btn-group">
-                <a href="#" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Resume</a>
-                <a href="#" class="btn btn-outline"><i class="fas fa-award"></i> Certificates</a>
+                <a href="https://drive.google.com/file/d/1_Se1yL_VPSBjd0gzy0ppVlk7xJ8UpIxJ/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-file-pdf"></i> <span data-key="btn-resume">Resume</span></a>
+                <a href="https://drive.google.com/drive/folders/1TtJltU2dNe395ZCEMdzVcLrMdh6unKyk?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-outline"><i class="fas fa-award"></i> <span data-key="btn-cert">Certificates</span></a>
             </div>
         </div>
     </section>
 
     <section id="story" style="background-color: #f1f5f9;">
-        <h2 style="text-align: center;">My Journey</h2>
+        <h2 style="text-align: center;" data-key="story-title">My Journey</h2>
         <div class="story-grid">
             <a href="https://hs-schmalkalden.de" target="_blank" class="card">
                 <img src="assets/img/Logo-HS-Schmalkalden.jpg" alt="HS" class="journey-logo">
-                <h3>Master Degree</h3>
+                <h3 data-key="card1-title">Master Degree</h3>
                 <p><strong>Fachhochschule Schmalkalden</strong></p>
-                <p>Applied Computer Science</p>
+                <p data-key="card1-major">Applied Computer Science</p>
             </a>
             <a href="https://ad-ins.com" target="_blank" class="card">
                 <img src="assets/img/adins_logo.png" alt="Adins" class="journey-logo">
-                <h3>ASP.NET Developer</h3>
+                <h3 data-key="card2-title">ASP.NET Developer</h3>
                 <p><strong>Adicipta Inovasi Teknologi</strong></p>
-                <p>IT Solution Specialist</p>
+                <p data-key="card2-major">IT Solution Specialist</p>
             </a>
             <a href="https://sgu.ac.id" target="_blank" class="card">
                 <img src="assets/img/sgu_logo.png" alt="SGU" class="journey-logo">
-                <h3>Bachelor Degree</h3>
+                <h3 data-key="card3-title">Bachelor Degree</h3>
                 <p><strong>Swiss German University</strong></p>
-                <p>Information Technology</p>
+                <p data-key="card3-major">Information Technology</p>
             </a>
         </div>
     </section>
 
     <section id="contact">
-        <h2 style="text-align: center; margin-bottom: 2rem;">Get In Touch</h2>
+        <h2 style="text-align: center; margin-bottom: 2rem;" data-key="contact-title">Get In Touch</h2>
         <div class="contact-form">
             <form action="mailto:arief.budiman@email.com" method="post" enctype="text/plain">
                 <div class="form-group">
-                    <label>Email</label>
+                    <label data-key="label-email">Email</label>
                     <input type="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label>Subject</label>
+                    <label data-key="label-subject">Subject</label>
                     <input type="text" name="subject" required>
                 </div>
                 <div class="form-group">
-                    <label>Description</label>
+                    <label data-key="label-desc">Description</label>
                     <textarea name="message" rows="4" required></textarea>
                 </div>
-                <button type="submit">Send Message</button>
+                <button type="submit" class="btn-send" id="submit-btn">
+                    <span data-key="btn-send">Send Message</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </form>
         </div>
     </section>
 
-    <footer>&copy; 2026 Arief Budiman. Professional Portfolio.</footer>
+    <footer>&copy; 2026 Arief Budiman</footer>
 
     <script>
-        // JavaScript for the Hamburger Menu Toggle
+        const translations = {
+            en: {
+                "nav-about": "About", "nav-story": "My Story", "nav-contact": "Contact",
+                "about-title": "Hello!! My name is Arief Budiman",
+                "about-desc": "Graduated from Swiss German University as a Bachelor of Information Technology. To gain experience, I started working in an IT Solution company as a developer. After 2 years, I opened a new page in Germany to pursue a Master's degree (M.Sc.). Here are a few things I’ve been working with recently:",
+                "btn-resume": "Resume", "btn-cert": "Certificates",
+                "story-title": "My Journey",
+                "card1-title": "Master Degree", "card1-major": "Applied Computer Science",
+                "card2-title": "ASP.NET Developer", "card2-major": "IT Solution Specialist",
+                "card3-title": "Bachelor Degree", "card3-major": "Information Technology",
+                "contact-title": "Get In Touch", "label-email": "Email", "label-subject": "Subject", "label-desc": "Description", "btn-send": "Send Message"
+            },
+            de: {
+                "nav-about": "Über mich", "nav-story": "Meine Geschichte", "nav-contact": "Kontakt",
+                "about-title": "Hallo!! Mein Name ist Arief Budiman",
+                "about-desc": "Absolvent der Swiss German University mit einem Bachelor in Informationstechnologie. Um Erfahrungen zu sammeln, begann ich als Entwickler in einem IT-Lösungsunternehmen zu arbeiten. Nach 2 Jahren schlug ich in Deutschland ein neues Kapitel auf, um ein Masterstudium (M.Sc.) zu absolvieren. Hier sind einige Dinge, an denen ich zuletzt gearbeitet habe:",
+                "btn-resume": "Lebenslauf", "btn-cert": "Zertifikate",
+                "story-title": "Mein Werdegang",
+                "card1-title": "Master-Abschluss", "card1-major": "Angewandte Informatik",
+                "card2-title": "ASP.NET Entwickler", "card2-major": "IT-Lösungsspezialist",
+                "card3-title": "Bachelor-Abschluss", "card3-major": "Informationstechnologie",
+                "contact-title": "Kontakt", "label-email": "E-Mail", "label-subject": "Betreff", "label-desc": "Beschreibung", "btn-send": "Nachricht senden"
+            }
+        };
+
+        function setLanguage(lang) {
+            // Update UI Text
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                el.innerText = translations[lang][key];
+            });
+
+            // Update Button States
+            document.getElementById('btn-en').classList.remove('active');
+            document.getElementById('btn-de').classList.remove('active');
+            document.getElementById(`btn-${lang}`).classList.add('active');
+
+            // Save preference
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        // Initialize from local storage or default to English
+        const savedLang = localStorage.getItem('preferredLang') || 'en';
+        setLanguage(savedLang);
+
+        // Hamburger Toggle logic
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close menu when a link is clicked (for better UX)
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
+        hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
     </script>
 </body>
 </html>
