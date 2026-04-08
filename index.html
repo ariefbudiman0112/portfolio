@@ -3,308 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arief Budiman | Portfolio</title>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <title>Anna Firmansyah | Digital Architect</title>
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
-    
+    <!-- Google Fonts -->
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --dark: #1f2937;
-            --light: #6b7280;
-            --bg-light: #f8fafc;
-            --white: #ffffff;
-            --gray-300: #d1d5db;
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --bg: #0f172a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
+        body { background-color: var(--bg); color: var(--text-main); overflow-x: hidden; }
 
-        /* --- Navbar --- */
+        /* --- NAVBAR --- */
         nav {
-            background: var(--white);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 10%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        /* send button */
-        /* Enhanced Send Message Button */
-        .btn-send {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-            position: relative;
-            overflow: hidden;
+            position: fixed; top: 0; width: 100%; height: 85px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(15px);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 8%; z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
         }
 
-        .btn-send:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
-            letter-spacing: 1px;
+        .logo { font-weight: 800; font-size: 1.8rem; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; flex: 1; }
+
+        .nav-container { display: flex; align-items: center; gap: 30px; }
+
+        .lang-switcher {
+            display: flex; background: var(--glass); padding: 4px; border-radius: 50px; 
+            border: 1px solid var(--glass-border);
         }
-
-        .btn-send:active {
-            transform: translateY(0);
+        .lang-btn {
+            background: transparent; border: none; padding: 6px 16px; cursor: pointer;
+            font-size: 11px; font-weight: 800; border-radius: 50px; color: var(--text-dim); transition: var(--transition);
         }
+        .lang-btn.active { background: var(--primary); color: white; box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3); }
 
-        /* Subtle shine effect on hover */
-        .btn-send::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 20%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(30deg);
-            transition: all 0.6s ease;
-        }
-
-        .btn-send:hover::after {
-            left: 120%;
-        }
-
-        .btn-send i {
-            transition: transform 0.3s ease;
-        }
-
-        .btn-send:hover i {
-            transform: translateX(5px) rotate(-10deg);
-        }
-
-
-        .logo { font-weight: 700; font-size: 1.5rem; color: var(--primary); text-decoration: none; }
-
-        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-        .nav-links { display: flex; list-style: none; gap: 2rem; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: 0.3s; }
+        .nav-links { display: flex; list-style: none; gap: 35px; }
+        .nav-links a { text-decoration: none; color: var(--text-dim); font-weight: 600; transition: var(--transition); font-size: 0.95rem; }
         .nav-links a:hover { color: var(--primary); }
 
-        /* Language Switcher Active/Inactive */
-        .lang-switcher {
-            display: flex;
-            border: 1px solid var(--primary);
-            border-radius: 20px;
-            overflow: hidden;
-            background: var(--white);
+        .burger { display: none; cursor: pointer; }
+        .burger div { width: 25px; height: 2px; background: white; margin: 6px; transition: var(--transition); }
+
+        /* --- SECTIONS --- */
+        section { min-height: 100vh; padding: 120px 8% 80px; opacity: 0; transform: translateY(40px); transition: 1s all ease; }
+        section.active { opacity: 1; transform: translateY(0); }
+
+        /* --- HOME --- */
+        #home { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 40px; padding-top: 85px; padding-bottom: 0; }
+        .hero-text h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .hero-text h1 span { color: var(--primary); }
+        .hero-text p { font-size: 1.1rem; color: var(--text-dim); margin-bottom: 35px; line-height: 1.8; }
+        .btn-group { display: flex; gap: 15px; }
+        .btn { padding: 16px 35px; border-radius: 12px; text-decoration: none; font-weight: 700; transition: var(--transition); font-size: 0.9rem; border: none; cursor: pointer; display: inline-block; }
+        .btn-primary { background: linear-gradient(45deg, var(--primary), var(--secondary)); color: white; }
+        .btn-secondary { background: var(--glass); color: white; border: 1px solid var(--glass-border); }
+        
+        /* Updated Home Image: Fit top & bottom, borderless */
+        .home-img { height: calc(100vh - 85px); display: flex; align-items: flex-end; justify-content: center; overflow: hidden; }
+        .home-img img { height: 100%; width: auto; object-fit: contain; }
+
+        /* --- ABOUT --- */
+        .about-container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; }
+        
+        /* Updated About Image: Borderless & smaller */
+        .about-visual { display: flex; justify-content: center; }
+        .about-visual img { width: 80%; max-width: 320px; border-radius: 0; border: none; }
+
+        .tab-btns-modern { display: flex; gap: 10px; background: rgba(255,255,255,0.03); padding: 5px; border-radius: 15px; margin-bottom: 25px; }
+        .tab-btn-m { flex: 1; padding: 12px; border: none; background: transparent; color: var(--text-dim); font-weight: 600; cursor: pointer; border-radius: 10px; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .tab-btn-m.active-tab { background: var(--primary); color: white; }
+        .tab-content-m { display: none; animation: fadeIn 0.5s ease forwards; }
+        .tab-content-m.active-content { display: block; }
+
+        .skill-item { margin-bottom: 20px; }
+        .skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; }
+        .bar-bg { height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .bar-fill { height: 100%; background: var(--primary); border-radius: 10px; }
+
+        .modern-timeline { border-left: 1px solid var(--glass-border); padding-left: 20px; }
+        .timeline-box { margin-bottom: 25px; position: relative; }
+        .timeline-box .dot { position: absolute; left: -26px; top: 5px; width: 10px; height: 10px; background: var(--secondary); border-radius: 50%; }
+
+        /* --- PRICE --- */
+        .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .price-card { background: var(--glass); padding: 40px; border-radius: 30px; border: 1px solid var(--glass-border); text-align: center; }
+        .price-card h3 { font-size: 1.5rem; margin-bottom: 20px; }
+        .price-card .cost { font-size: 2.5rem; font-weight: 800; display: block; margin-bottom: 20px; color: var(--primary); }
+
+        /* --- CONTACT --- */
+        .contact-box { background: var(--glass); padding: 50px; border-radius: 30px; border: 1px solid var(--glass-border); max-width: 700px; margin: 0 auto; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        input, textarea { width: 100%; padding: 15px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 12px; color: white; outline: none; }
+        .full-width { grid-column: span 2; }
+        .submit-btn { background: var(--primary); color: white; font-weight: 700; cursor: pointer; border: none; }
+
+        @media (max-width: 992px) {
+            .nav-links { position: absolute; right: 0; top: 85px; background: var(--bg); width: 100%; flex-direction: column; padding: 40px 0; transform: translateY(-150%); transition: 0.5s; border-bottom: 1px solid var(--glass-border); }
+            .nav-links.nav-active { transform: translateY(0); }
+            .burger { display: block; }
+            #home, .about-container { grid-template-columns: 1fr; text-align: center; }
+            .home-img { height: 400px; }
+            .about-visual { max-width: 250px; margin: 0 auto; }
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
         }
 
-        .lang-btn {
-            padding: 4px 12px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.75rem;
-            transition: 0.3s;
-            background: transparent;
-            color: var(--primary);
-        }
-
-        .lang-btn.active {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; border: none; background: none; }
-        .hamburger span { width: 25px; height: 3px; background: var(--dark); border-radius: 2px; }
-
-        @media (max-width: 768px) {
-            .hamburger { display: flex; }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                padding: 1rem 0;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.05);
-            }
-            .nav-links.active { display: flex; }
-            .nav-links li { text-align: center; margin: 10px 0; }
-        }
-
-        /* --- UI Sections --- */
-        section { padding: 80px 10%; }
-        .about-content { text-align: center; max-width: 800px; margin: 0 auto; }
-        .avatar { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 4px solid var(--white); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .btn-group { display: flex; justify-content: center; gap: 15px; margin-top: 2rem; }
-        .btn { padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; }
-        .btn-primary { background: var(--primary); color: white; border: none; cursor: pointer; }
-        .btn-outline { border: 2px solid var(--primary); color: var(--primary); }
-
-        .story-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .card { background: var(--white); padding: 2.5rem; border-radius: 15px; text-align: center; text-decoration: none; color: inherit; transition: 0.3s; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .journey-logo { height: 60px; margin-bottom: 1rem; }
-
-        .contact-form { max-width: 600px; margin: 0 auto; background: var(--white); padding: 2.5rem; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        .form-group { margin-bottom: 1.2rem; text-align: left; }
-        label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
-        input, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
-
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    
         footer { text-align: center; padding: 3rem; color: var(--light); font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="logo">Arief.B</a>
-        
-        <div class="nav-right">
-            <!-- Language Switcher with Active/Inactive states -->
+        <div class="logo">ANNA.</div>
+        <div class="nav-container">
             <div class="lang-switcher">
                 <button class="lang-btn active" id="btn-en" onclick="setLanguage('en')">EN</button>
-                <button class="lang-btn" id="btn-de" onclick="setLanguage('de')">DE</button>
+                <button class="lang-btn" id="btn-jp" onclick="setLanguage('jp')">JP</button>
             </div>
-
-            <button class="hamburger" id="hamburger">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#about" data-key="nav-about">About</a></li>
-                <li><a href="#story" data-key="nav-story">My Story</a></li>
-                <li><a href="#contact" data-key="nav-contact">Contact</a></li>
+            <ul class="nav-links">
+                <li><a href="#home" class="lang" data-en="Home" data-jp="ホーム">Home</a></li>
+                <li><a href="#about" class="lang" data-en="About" data-jp="私について">About</a></li>
+                <li><a href="#price" class="lang" data-en="Price" data-jp="料金">Price</a></li>
+                <li><a href="#contact" class="lang" data-en="Contact" data-jp="連絡先">Contact</a></li>
             </ul>
+            <div class="burger"><div></div><div></div><div></div></div>
         </div>
     </nav>
 
-    <section id="about">
-        <div class="about-content">
-            <img src="assets/img/avatar.jpg" alt="Arief" class="avatar">
-            <h1 data-key="about-title">Hello!! My name is Arief Budiman</h1>
-            <p data-key="about-desc">Graduated from <strong>Swiss German University</strong> as a Bachelor of Information Technology. To gain experience, I started working in an IT Solution company as a developer. After 2 years, I opened a new page in Germany to pursue a Master's degree (M.Sc.). Here are a few things I’ve been working with recently:</p>
+    <section id="home" class="active">
+        <div class="hero-text">
+            <h1 class="lang-title" data-en="Creative <span>Developer</span>" data-jp="クリエイティブ <span>開発者</span>">
+                Anna <span>Firmansyah</span>
+            </h1>
+            <p class="lang" data-en="Hello, I'm Anna. I build visually stunning and highly functional digital experiences for modern brands." 
+               data-jp="こんにちは、アンナです。モダンなブランドのために、視覚的に素晴らしく、非常に機能的なデジタル体験を構築します。">
+                Hello, I'm Anna. I build visually stunning and highly functional digital experiences for modern brands.
+            </p>
+            <div class="social-icons" style="margin-bottom: 25px;">
+                <a href="#" style="color: white; font-size: 1.5rem; margin-right: 20px;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-tiktok"></i></a>
+            </div>
             <div class="btn-group">
-                <a href="https://drive.google.com/file/d/1_Se1yL_VPSBjd0gzy0ppVlk7xJ8UpIxJ/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-file-pdf"></i> <span data-key="btn-resume">Resume</span></a>
-                <a href="https://drive.google.com/drive/folders/1TtJltU2dNe395ZCEMdzVcLrMdh6unKyk?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-outline"><i class="fas fa-award"></i> <span data-key="btn-cert">Certificates</span></a>
+                <a href="#contact" class="btn btn-primary lang" data-en="Contact Me" data-jp="連絡先">Contact Me</a>
+                <a href="#" class="btn btn-secondary lang" data-en="Portfolio" data-jp="実績">Portfolio</a>
+            </div>
+        </div>
+        <div class="home-img">
+            <img src="assets/1.png" alt="Anna Avatar Home">
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-container">
+            <div class="about-visual">
+                <img src="assets/2.png" alt="About Anna">
+            </div>
+            <div class="about-content">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Identity & Journey</h2>
+                <div class="tab-btns-modern">
+                    <button class="tab-btn-m active-tab" onclick="openTab('info')"><i class="fas fa-user"></i> <span class="lang" data-en="About" data-jp="概要">About</span></button>
+                    <button class="tab-btn-m" onclick="openTab('skills')"><i class="fas fa-code"></i> <span class="lang" data-en="Skills" data-jp="スキル">Skills</span></button>
+                    <button class="tab-btn-m" onclick="openTab('exp')"><i class="fas fa-history"></i> <span class="lang" data-en="History" data-jp="経歴">History</span></button>
+                </div>
+                <div id="info" class="tab-content-m active-content">
+                    <p class="lang" data-en="Based in Indonesia, I specialize in UI/UX design and Frontend development. I turn ideas into reality through clean code and pixel-perfect design."
+                       data-jp="インドネシアを拠点に、UI/UXデザインとフロントエンド開発を専門としています。クリーンなコードとピクセルパーフェクトなデザインを通じてアイデアを現実に変えます。">
+                        Based in Indonesia, I specialize in UI/UX design and Frontend development.
+                    </p>
+                </div>
+                <div id="skills" class="tab-content-m">
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Web Design</span><span>95%</span></div>
+                        <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>JavaScript</span><span>88%</span></div>
+                        <div class="bar-bg"><div class="bar-fill" style="width: 88%;"></div></div>
+                    </div>
+                </div>
+                <div id="exp" class="tab-content-m">
+                    <div class="modern-timeline">
+                        <div class="timeline-box"><div class="dot"></div><div class="time">2021 - Now</div><p>Lead Designer @ Creative Studio</p></div>
+                        <div class="timeline-box"><div class="dot"></div><div class="time">2019 - 2021</div><p>Junior Web Developer</p></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="story" style="background-color: #f1f5f9;">
-        <h2 style="text-align: center;" data-key="story-title">My Journey</h2>
-        <div class="story-grid">
-            <a href="https://hs-schmalkalden.de" target="_blank" class="card">
-                <img src="assets/img/Logo-HS-Schmalkalden.jpg" alt="HS" class="journey-logo">
-                <h3 data-key="card1-title">Master Degree</h3>
-                <p><strong>Fachhochschule Schmalkalden</strong></p>
-                <p data-key="card1-major">Applied Computer Science</p>
-            </a>
-            <a href="https://ad-ins.com" target="_blank" class="card">
-                <img src="assets/img/adins_logo.png" alt="Adins" class="journey-logo">
-                <h3 data-key="card2-title">ASP.NET Developer</h3>
-                <p><strong>Adicipta Inovasi Teknologi</strong></p>
-                <p data-key="card2-major">IT Solution Specialist</p>
-            </a>
-            <a href="https://sgu.ac.id" target="_blank" class="card">
-                <img src="assets/img/sgu_logo.png" alt="SGU" class="journey-logo">
-                <h3 data-key="card3-title">Bachelor Degree</h3>
-                <p><strong>Swiss German University</strong></p>
-                <p data-key="card3-major">Information Technology</p>
-            </a>
+    <section id="price">
+        <div style="width: 100%;">
+            <h2 style="text-align: center; margin-bottom: 50px;" class="lang" data-en="Packages" data-jp="パッケージ">Packages</h2>
+            <div class="price-grid">
+                <div class="price-card"><h3>Basic</h3><span class="cost">$199</span><p>Single Page Website</p></div>
+                <div class="price-card"><h3>Premium</h3><span class="cost">$499</span><p>Full E-Commerce Solution</p></div>
+            </div>
         </div>
     </section>
 
     <section id="contact">
-        <h2 style="text-align: center; margin-bottom: 2rem;" data-key="contact-title">Get In Touch</h2>
-        <div class="contact-form">
-            <form action="mailto:arief.budiman@email.com" method="post" enctype="text/plain">
-                <div class="form-group">
-                    <label data-key="label-email">Email</label>
-                    <input type="email" name="email" required>
+        <div class="contact-box">
+            <h2 style="text-align:center; margin-bottom:30px;" class="lang" data-en="Let's Talk" data-jp="お話しましょう">Let's Talk</h2>
+            <form action="mailto:annafirmansyah25@gmail.com" method="POST" enctype="text/plain">
+                <div class="form-grid">
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="text" class="full-width" placeholder="Subject">
+                    <textarea class="full-width" rows="5" placeholder="Message"></textarea>
+                    <button type="submit" class="btn submit-btn full-width lang" data-en="Send Message" data-jp="送信">Send Message</button>
                 </div>
-                <div class="form-group">
-                    <label data-key="label-subject">Subject</label>
-                    <input type="text" name="subject" required>
-                </div>
-                <div class="form-group">
-                    <label data-key="label-desc">Description</label>
-                    <textarea name="message" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="btn-send" id="submit-btn">
-                    <span data-key="btn-send">Send Message</span>
-                    <i class="fas fa-paper-plane"></i>
-                </button>
             </form>
         </div>
     </section>
-
-    <footer>&copy; 2026 Arief Budiman</footer>
+    <footer>&copy; 2026 Anna Firmansyah</footer>
 
     <script>
-        const translations = {
-            en: {
-                "nav-about": "About", "nav-story": "My Story", "nav-contact": "Contact",
-                "about-title": "Hello!! My name is Arief Budiman",
-                "about-desc": "Graduated from Swiss German University as a Bachelor of Information Technology. To gain experience, I started working in an IT Solution company as a developer. After 2 years, I opened a new page in Germany to pursue a Master's degree (M.Sc.). Here are a few things I’ve been working with recently:",
-                "btn-resume": "Resume", "btn-cert": "Certificates",
-                "story-title": "My Journey",
-                "card1-title": "Master Degree", "card1-major": "Applied Computer Science",
-                "card2-title": "ASP.NET Developer", "card2-major": "IT Solution Specialist",
-                "card3-title": "Bachelor Degree", "card3-major": "Information Technology",
-                "contact-title": "Get In Touch", "label-email": "Email", "label-subject": "Subject", "label-desc": "Description", "btn-send": "Send Message"
-            },
-            de: {
-                "nav-about": "Über mich", "nav-story": "Meine Geschichte", "nav-contact": "Kontakt",
-                "about-title": "Hallo!! Mein Name ist Arief Budiman",
-                "about-desc": "Absolvent der Swiss German University mit einem Bachelor in Informationstechnologie. Um Erfahrungen zu sammeln, begann ich als Entwickler in einem IT-Lösungsunternehmen zu arbeiten. Nach 2 Jahren schlug ich in Deutschland ein neues Kapitel auf, um ein Masterstudium (M.Sc.) zu absolvieren. Hier sind einige Dinge, an denen ich zuletzt gearbeitet habe:",
-                "btn-resume": "Lebenslauf", "btn-cert": "Zertifikate",
-                "story-title": "Mein Werdegang",
-                "card1-title": "Master-Abschluss", "card1-major": "Angewandte Informatik",
-                "card2-title": "ASP.NET Entwickler", "card2-major": "IT-Lösungsspezialist",
-                "card3-title": "Bachelor-Abschluss", "card3-major": "Informationstechnologie",
-                "contact-title": "Kontakt", "label-email": "E-Mail", "label-subject": "Betreff", "label-desc": "Beschreibung", "btn-send": "Nachricht senden"
-            }
-        };
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav-links');
+        burger.addEventListener('click', () => nav.classList.toggle('nav-active'));
 
         function setLanguage(lang) {
-            // Update UI Text
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                el.innerText = translations[lang][key];
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+            
+            document.querySelectorAll('.lang').forEach(el => {
+                el.innerText = el.getAttribute(`data-${lang}`);
             });
 
-            // Update Button States
-            document.getElementById('btn-en').classList.remove('active');
-            document.getElementById('btn-de').classList.remove('active');
-            document.getElementById(`btn-${lang}`).classList.add('active');
+            document.querySelectorAll('.lang-title').forEach(el => {
+                el.innerHTML = el.getAttribute(`data-${lang}`);
+            });
 
-            // Save preference
-            localStorage.setItem('preferredLang', lang);
+            nav.classList.remove('nav-active');
         }
 
-        // Initialize from local storage or default to English
-        const savedLang = localStorage.getItem('preferredLang') || 'en';
-        setLanguage(savedLang);
+        function openTab(tabName) {
+            document.querySelectorAll('.tab-content-m').forEach(c => c.classList.remove('active-content'));
+            document.querySelectorAll('.tab-btn-m').forEach(b => b.classList.remove('active-tab'));
+            document.getElementById(tabName).classList.add('active-content');
+            event.currentTarget.classList.add('active-tab');
+        }
 
-        // Hamburger Toggle logic
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('nav-links');
-        hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('section').forEach(sec => {
+                if (window.scrollY >= sec.offsetTop - 450) sec.classList.add('active');
+            });
+        });
     </script>
 </body>
 </html>
