@@ -599,84 +599,6 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* Description Text Constraints */
-        .truncated-desc {
-            display: -webkit-box;
-            -webkit-line-clamp: 2; /* Truncates standard descriptions precisely at 2 lines */
-            -webkit-box-orient: vertical;  
-            overflow: hidden;
-            line-height: 1.6;
-            color: #555;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-
-        .full-desc {
-            display: block;
-            line-height: 1.6;
-            color: #222;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-
-        /* Detail Button styling */
-        .details-toggle-btn {
-            background: none;
-            border: none;
-            color: #6f4e37;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            padding: 0.25rem 0;
-            margin-top: 0.35rem;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            transition: opacity 0.2s;
-        }
-        .details-toggle-btn:hover {
-            opacity: 0.8;
-        }
-
-        /* Dedicated Scroll Container for Features */
-        .scrollable-features-container {
-            max-height: 220px; /* Constrains lists nicely inside desktop/mobile bounds */
-            overflow-y: auto;
-            padding-right: 0.5rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid #f0f0f0;
-            border-radius: 6px;
-            padding: 0.75rem 1rem;
-            background: #fafafa;
-        }
-
-        /* Scrollbar Customization for Sleeker UX Views */
-        .scrollable-features-container::-webkit-scrollbar {
-            width: 6px;
-        }
-        .scrollable-features-container::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
-        .scrollable-features-container::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 4px;
-        }
-        .scrollable-features-container::-webkit-scrollbar-thumb:hover {
-            background: #b3b3b3;
-        }
-
-        /* Tech Badges styling */
-        .tech-badge {
-            padding: 0.3rem 0.75rem;
-            background: #f3f4f6;
-            color: #4b5563;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-
         /* --- Responsive Layout Rules --- */
         @media (max-width: 768px) {
             body { flex-direction: column; }
@@ -708,31 +630,54 @@
             .lang-toggle-widget { top: 15px; right: 15px; padding: 8px 16px; }
         }
 
-       .btn-resume {
+        /* Truncated Mode: Limits layout height and appends ellipses */
+.truncated-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Shows exactly 2 lines before truncating */
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Expanded Full Detail Mode */
+.full-desc {
+    display: block;
+    overflow: visible;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Styled Details Actions button */
+.details-toggle-btn {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #0066da; /* Accent blue color */
-    color: #ffffff;
+    gap: 8px;
+    margin-top: 0.75rem;
+    background: transparent;
     border: none;
-    border-radius: 4px;
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background-color 0.2s, box-shadow 0.2s;
+    color: #0066da;
+    font-weight: 600;
+    font-size: 0.9rem;
     cursor: pointer;
+    padding: 4px 0;
+    transition: color 0.2s ease;
 }
 
-.btn-resume:hover {
-    background-color: #0052b4;
-    box-shadow: 0 2px 5px rgba(0,102,218,0.3);
+.details-toggle-btn:hover {
+    color: #0052b4;
 }
 
-.resume-icon {
-    width: 20px;
-    height: 20px;
+/* Maximum constraint framework rules for Feature blocks */
+.scrollable-features-container {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
 }
 
     </style>
@@ -751,24 +696,14 @@
 
     <main>
         
-       <!-- HOME SECTION -->
+        <!-- HOME SECTION -->
         <section id="home">
             <div class="about-content">
                 <img src="assets/img/avatar.jpg" alt="Arief" class="avatar">
                 <h1 data-tr="home_title">Hello! My name is Arief Budiman</h1>
                 <p class="subtitle" data-tr="home_subtitle">Graduated from Swiss German University with a Bachelor of Information Technology.</p>
-                
-                <!-- Updated Resume Button -->
-                <a href="resume.html" target="_blank" rel="noopener noreferrer" class="btn-resume" data-tr="home_resume_btn">
-                    <svg class="resume-icon" viewBox="0 0 24 24" xmlns="http://w3.org">
-                        <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                    </svg>
-                    <span>Resume</span>
-                </a>
             </div>
         </section>
-
-
 
         <!-- IDENTITY & JOURNEY SECTION -->
         <section id="journey">
@@ -966,38 +901,38 @@
     </main>
 
     <!-- PROJECT MODAL POPUP WRAPPER -->
-    <div class="modal" id="projectModal" onclick="closeProjectModalOutside(event)">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeProjectModal()">&times;</span>
-            <h3 id="modalTitle">BrewApp</h3>
-            
-            <div class="modal-gallery">
-                <div class="modal-gallery-track" id="modalGalleryTrack"></div>
-                <button class="gallery-nav prev" onclick="scrollGallery(-1)"><i class="fa-solid fa-chevron-left"></i></button>
-                <button class="gallery-nav next" onclick="scrollGallery(1)"><i class="fa-solid fa-chevron-right"></i></button>
-            </div>
-
-            <!-- Description Container with Short View Toggle -->
-            <div class="description-section" style="margin-bottom: 1.5rem;">
-                <div id="modalDescription" class="truncated-desc">Detailed project description goes here...</div>
-                <button id="toggleDescBtn" onclick="toggleDescription()" class="details-toggle-btn">
-                    <span>View Full Details</span> <i class="fa-solid fa-chevron-down"></i>
-                </button>
-            </div>
-
-            <!-- Scrollable Feature & Selling Points Container -->
-            <div id="modalSellingPoints" class="scrollable-features-container"></div>
-            
-            <div style="margin-bottom: 1.5rem;">
-                <strong data-tr="modal_tech">Tech Stack:</strong>
-                <div class="tech-stack" id="modalTechStack" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;"></div>
-            </div>
-
-            <a href="#" id="modalLiveLink" target="_blank" class="live-btn">
-                <i class="fa-solid fa-globe"></i> <span data-tr="modal_live">Visit Live Website</span>
-            </a>
+<div class="modal" id="projectModal" onclick="closeProjectModalOutside(event)">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeProjectModal()">&times;</span>
+        <h3 id="modalTitle">BrewApp</h3>
+        
+        <div class="modal-gallery">
+            <div class="modal-gallery-track" id="modalGalleryTrack"></div>
+            <button class="gallery-nav prev" onclick="scrollGallery(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="gallery-nav next" onclick="scrollGallery(1)"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
+
+        <!-- Description Container with Short View Toggle -->
+        <div class="description-section" style="margin-bottom: 1.5rem;">
+            <div id="modalDescription" class="truncated-desc">Detailed project description goes here...</div>
+            <button id="toggleDescBtn" onclick="toggleDescription()" class="details-toggle-btn">
+                <span>View Full Details</span> <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- Scrollable Feature & Selling Points Container -->
+        <div id="modalSellingPoints" class="scrollable-features-container"></div>
+        
+        <div style="margin-bottom: 1.5rem;">
+            <strong data-tr="modal_tech">Tech Stack:</strong>
+            <div class="tech-stack" id="modalTechStack" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;"></div>
+        </div>
+
+        <a href="#" id="modalLiveLink" target="_blank" class="live-btn">
+            <i class="fa-solid fa-globe"></i> <span data-tr="modal_live">Visit Live Website</span>
+        </a>
     </div>
+</div>
 
     <!-- Clickable Language Switcher Button -->
     <button class="lang-toggle-widget" id="langToggleBtn" onclick="toggleLanguage()">DE</button>
@@ -1136,7 +1071,7 @@
         const projectData = {
     ecommerce: {
         title: "Coffee Shop Platform (BrewApp)",
-        desc: "The platform is designed to make your daily coffee ritual faster, smarter, and tailored perfectly to your taste.",
+        desc: "A highly performant modular storefront ecosystem engineered with strict responsive layouts, secure transactional workflows, and complete sub-second interface refresh layers.",
         tech: ["ReactJs", "Redux", "JavaScript", "HTML5", "CSS3", "REST APIs"],
         images: [
             "assets/brewapp/home_cust.png", 
@@ -1146,7 +1081,7 @@
             "assets/brewapp/menu detail.png", 
             "assets/brewapp/cart.png"
         ],
-        url: "https://rendering-tarot-untamed.ngrok-free.dev/",
+        url: "https://ngrok-free.dev",
         sellingPoints: {
             "🔄 Core Ecosystem & Adaptive Access": [
                 "**Authentication Layer:** Dedicated, secure user portal for seamless onboarding via registration and login flows.",
@@ -1170,10 +1105,7 @@
     }
 };
 
-let currentGalleryIndex = 0;
-let isDescriptionExpanded = false;
-
-function openProjectModal(projectKey) {
+       function openProjectModal(projectKey) {
     const data = projectData[projectKey];
     if (!data) return;
 
@@ -1270,30 +1202,71 @@ function toggleDescription() {
 }
 
 
-function scrollGallery(direction) {
-    const track = document.getElementById("modalGalleryTrack");
-    const images = track.getElementsByTagName("img");
-    if (images.length === 0) return;
+        function scrollGallery(direction) {
+            const track = document.getElementById('modalGalleryTrack');
+            const totalWidth = track.scrollWidth;
+            const viewWidth = track.parentElement.clientWidth;
+            let currentX = parseInt(track.style.transform.replace(/[^\d-]/g, '')) || 0;
+            
+            let newX = currentX + (direction * -viewWidth);
+            if (newX < -(totalWidth - viewWidth)) newX = 0;
+            if (newX > 0) newX = -(totalWidth - viewWidth);
+            
+            track.style.transform = `translateX(${newX}px)`;
+        }
 
-    currentGalleryIndex += direction;
-    if (currentGalleryIndex < 0) currentGalleryIndex = images.length - 1;
-    if (currentGalleryIndex >= images.length) currentGalleryIndex = 0;
+        function closeProjectModal() {
+            document.getElementById('projectModal').style.display = 'none';
+        }
 
-    // Safe dynamic bounding box measurement for slider transforms
-    const slideWidth = track.parentElement.clientWidth;
-    track.style.transition = "transform 0.3s ease-in-out";
-    track.style.transform = `translateX(${-currentGalleryIndex * slideWidth}px)`;
-}
+        function closeProjectModalOutside(event) {
+            if (event.target.id === 'projectModal') {
+                closeProjectModal();
+            }
+        }
 
-function closeProjectModal() {
-    document.getElementById("projectModal").style.display = "none";
-}
+        function switchTab(event, tabId) {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
 
-function closeProjectModalOutside(event) {
-    if (event.target.id === "projectModal") {
-        closeProjectModal();
-    }
-}
+        const scrollBtn = document.getElementById('scrollBtn');
+        const scrollIcon = document.getElementById('scrollIcon');
+        
+        window.onscroll = function() {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+                scrollBtn.classList.add('contact-mode');
+                scrollIcon.className = "fa-solid fa-arrow-up";
+            } else {
+                scrollBtn.classList.remove('contact-mode');
+                scrollIcon.className = "fa-solid fa-arrow-down";
+            }
+
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.sidebar-links a');
+            
+            sections.forEach(section => {
+                const top = window.scrollY;
+                const offset = section.offsetTop - 150;
+                const height = section.offsetHeight;
+                const id = section.getAttribute('id');
+                
+                if (top >= offset && top < offset + height) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        };
 
         function handleScrollAction() {
             if (scrollBtn.classList.contains('contact-mode')) {
