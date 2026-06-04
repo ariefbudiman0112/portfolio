@@ -631,54 +631,81 @@
         }
 
         /* Truncated Mode: Limits layout height and appends ellipses */
-.truncated-desc {
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Shows exactly 2 lines before truncating */
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.5;
-}
+        .truncated-desc {
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Shows exactly 2 lines before truncating */
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+        }
 
-/* Expanded Full Detail Mode */
-.full-desc {
-    display: block;
-    overflow: visible;
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.5;
-}
+        /* Expanded Full Detail Mode */
+        .full-desc {
+            display: block;
+            overflow: visible;
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+        }
 
-/* Styled Details Actions button */
-.details-toggle-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 0.75rem;
-    background: transparent;
-    border: none;
-    color: #0066da;
-    font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-    padding: 4px 0;
-    transition: color 0.2s ease;
-}
+        /* Styled Details Actions button */
+        .details-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 0.75rem;
+            background: transparent;
+            border: none;
+            color: #0066da;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 4px 0;
+            transition: color 0.2s ease;
+        }
 
-.details-toggle-btn:hover {
-    color: #0052b4;
-}
+        .details-toggle-btn:hover {
+            color: #0052b4;
+        }
 
-/* Maximum constraint framework rules for Feature blocks */
-.scrollable-features-container {
-    max-height: 300px;
-    overflow-y: auto;
-    padding-right: 0.5rem;
-    margin-bottom: 1.5rem;
-    border-radius: 4px;
-}
+        /* Maximum constraint framework rules for Feature blocks */
+        .scrollable-features-container {
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .btn-resume {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0066da; /* Accent blue color */
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-resume:hover {
+            background-color: #0052b4;
+            box-shadow: 0 2px 5px rgba(0,102,218,0.3);
+        }
+
+        .resume-icon {
+            width: 20px;
+            height: 20px;
+        }
 
     </style>
 </head>
@@ -702,6 +729,14 @@
                 <img src="assets/img/avatar.jpg" alt="Arief" class="avatar">
                 <h1 data-tr="home_title">Hello! My name is Arief Budiman</h1>
                 <p class="subtitle" data-tr="home_subtitle">Graduated from Swiss German University with a Bachelor of Information Technology.</p>
+                
+                <!-- Updated Resume Button -->
+                <a href="resume.html" target="_blank" rel="noopener noreferrer" class="btn-resume" data-tr="home_resume_btn">
+                    <svg class="resume-icon" viewBox="0 0 24 24" xmlns="http://w3.org">
+                        <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                    <span>Resume</span>
+                </a>
             </div>
         </section>
 
