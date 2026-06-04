@@ -98,21 +98,120 @@
             justify-content: center;
             align-items: center;
         }
-
-        /* --- Home Section --- */
-        #home {
-            background: var(--bg-light);
+       
+       /* Container Alignment */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
         }
 
-        .avatar { 
-            width: 160px; 
-            height: 160px; 
-            border-radius: 50%; 
-            object-fit: cover; 
-            margin-bottom: 1.5rem; 
-            border: 4px solid var(--white); 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+        /* Avatar Container & Status Indicator */
+        .avatar-wrapper {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .avatar-wrapper:hover .avatar {
+            transform: scale(1.04);
+        }
+
+        .status-badge {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background-color: #00aa47; /* Green for available */
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 8px rgba(0,10a,71,0.2);
+        }
+
+        /* Title & Subtitle Styling */
+        .main-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .main-title .name {
+            display: block;
+            color: #0066da; /* Corporate accent blue */
+            font-weight: 800;
+        }
+
+        .highlight-text {
+            color: #0066da;
+            font-weight: 600;
+        }
+
+        /* Quick Scannable Badges for HR */
+        .quick-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .quick-tags .tag {
+            background-color: #f1f3f5;
+            color: #495057;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Enhanced Call To Action Button */
+        .btn-resume {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            background-color: #0066da;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(0,102,218,0.25);
+            transition: all 0.2s ease;
+        }
+
+        .btn-resume:hover {
+            background-color: #0052b4;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,102,218,0.35);
+        }
+
+        .btn-resume:active {
+            transform: translateY(0);
+        }
+
+        .arrow-icon {
+            font-size: 0.8rem;
+            opacity: 0.8;
         }
 
         h1 { font-size: 2.5rem; margin-bottom: 1rem; }
@@ -571,32 +670,56 @@
             background: #6d28d9;
         }
 
+        /* Base Floating Action Button Structure */
         .scroll-indicator {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary);
-            color: var(--white);
+            bottom: 20px; /* Default desktop view spacing */
+            right: 20px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
             cursor: pointer;
+            z-index: 999;
+            color: #ffffff;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1001;
-            transition: transform 0.4s ease, background-color 0.3s;
+            transition: bottom 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
         }
 
         .scroll-indicator:hover {
-            background-color: var(--primary-light);
+            transform: scale(1.08);
+        }
+
+        .scroll-indicator i {
+            font-size: 24px;
+            line-height: 1;
+            transition: transform 0.3s ease;
+        }
+
+        /* state 1: WhatsApp Mode Styles */
+        .scroll-indicator.whatsapp-mode {
+            background-color: #25D366; /* Official WhatsApp green */
+            animation: pulseGlow 2s infinite;
+        }
+
+        /* state 2: Up Arrow Mode Styles */
+        .scroll-indicator.arrow-mode {
+            background-color: #2563eb; /* Dark theme neutral color */
+            animation: none; /* Stops the pulsing effect when serving as a top arrow */
         }
 
         @keyframes slideUp {
             from { transform: translateY(30px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Continuous attention-grabbing pulsing glow effect */
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+            70% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
         /* --- Responsive Layout Rules --- */
@@ -628,6 +751,17 @@
             }
             section { padding: 60px 5%; }
             .lang-toggle-widget { top: 15px; right: 15px; padding: 8px 16px; }
+
+             .scroll-indicator {
+                bottom: 80px; /* Adjust this value to match your mobile navbar height */
+                right: 16px;
+                width: 46px;
+                height: 46px;
+            }
+            
+            .scroll-indicator i {
+                font-size: 22px;
+            }
         }
 
         /* Truncated Mode: Limits layout height and appends ellipses */
@@ -726,16 +860,36 @@
         <!-- HOME SECTION -->
         <section id="home">
             <div class="about-content">
-                <img src="assets/img/avatar.jpg" alt="Arief" class="avatar">
-                <h1 data-tr="home_title">Hello! My name is Arief Budiman</h1>
-                <p class="subtitle" data-tr="home_subtitle">Graduated from Swiss German University with a Bachelor of Information Technology.</p>
+                <!-- Interactive avatar placeholder -->
+                <div class="avatar-wrapper">
+                    <img src="assets/img/avatar.jpg" alt="Arief Budiman" class="avatar">
+                    <span class="status-badge" data-tr="home_status_ready">Ready for Work</span>
+                </div>
+
+                <h1 class="main-title">
+                    <span class="greeting" data-tr="home_greeting">Hello! My name is</span> 
+                    <span class="name">Arief Budiman</span>
+                </h1>
                 
-                <!-- Updated Resume Button -->
+                <p class="subtitle" data-tr="home_subtitle">
+                    Graduated from <strong>Swiss German University</strong> with a 
+                    <span class="highlight-text">Bachelor of Information Technology</span>.
+                </p>
+
+                <!-- HR Focused Quick Badges -->
+                <div class="quick-tags">
+                    <span class="tag"><i class="fa-solid fa-code"></i> Full-Stack Dev</span>
+                    <span class="tag"><i class="fa-solid fa-graduation-cap"></i> IT Graduate</span>
+                    <span class="tag"><i class="fa-solid fa-location-dot"></i> Open to Relocate</span>
+                </div>
+                
+                <!-- Updated High-Engagement Resume Button -->
                 <a href="resume.html" target="_blank" rel="noopener noreferrer" class="btn-resume" data-tr="home_resume_btn">
                     <svg class="resume-icon" viewBox="0 0 24 24" xmlns="http://w3.org">
                         <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
                     </svg>
-                    <span>Resume</span>
+                    <span>View Resume</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
                 </a>
             </div>
         </section>
@@ -973,8 +1127,8 @@
     <button class="lang-toggle-widget" id="langToggleBtn" onclick="toggleLanguage()">DE</button>
 
     <!-- Floating Navigation Action Button (Transforms to Contact Icon on scroll bottom) -->
-    <div class="scroll-indicator" id="scrollBtn" onclick="handleScrollAction()">
-        <i class="fa fa-arrow-down" id="scrollIcon"></i>
+    <div class="scroll-indicator whatsapp-mode" id="scrollBtn" onclick="handleScrollAction()">
+        <i class="fa-brands fa-whatsapp" id="scrollIcon"></i>
     </div>
 
     <script>
@@ -1104,137 +1258,137 @@
         }
 
         const projectData = {
-    ecommerce: {
-        title: "Coffee Shop Platform (BrewApp)",
-        desc: "A highly performant modular storefront ecosystem engineered with strict responsive layouts, secure transactional workflows, and complete sub-second interface refresh layers.",
-        tech: ["ReactJs", "Redux", "JavaScript", "HTML5", "CSS3", "REST APIs"],
-        images: [
-            "assets/brewapp/home_cust.png", 
-            "assets/brewapp/login.png", 
-            "assets/brewapp/register.png", 
-            "assets/brewapp/menu.png", 
-            "assets/brewapp/menu detail.png", 
-            "assets/brewapp/cart.png"
-        ],
-        url: "https://ngrok-free.dev",
-        sellingPoints: {
-            "🔄 Core Ecosystem & Adaptive Access": [
-                "**Authentication Layer:** Dedicated, secure user portal for seamless onboarding via registration and login flows.",
-                "**Flexible Role Switcher:** Instant role-exchange feature (Customer ⇄ User ⇄ Admin) within a single session to evaluate structural ecosystem flows."
-            ],
-            "☕ Customer Profile Feature Suite": [
-                "**Smart Menu & Tailored Customization:** Explore interactive drink lists with advanced variable adjustments (milk alternatives, sweet levels, shot modifiers).",
-                "**One-Click Reordering:** Instantly bookmark specific custom recipes into a personalized favorites log.",
-                "**Digital Transaction Flows:** Frictionless point-of-sale checkout system integrated directly with historical receipts tracking."
-            ],
-            "🏃 Advanced User (Staff) Control Center": [
-                "**Active Queue Management:** Real-time dashboard capabilities allowing operators to monitor, complete, or cancel processing orders.",
-                "**Chronological Order Ledger:** Access a macro view covering both real-time operational lines and long-term historic archives."
-            ],
-            "📊 Executive Administrator Dashboards": [
-                "**Data-Driven BI Hub:** Visual analytics charts rendering revenue trajectories, total order counts, and structural attendance spikes.",
-                "**Workforce & Menu Infrastructure:** Control modules to instantly update menu prices, manage employee payroll/profiles, and register accounts.",
-                "**Marketing Engine & Timeclock:** Deploy manual clock-in/out attendance markers and update system-wide landing page marketing banners instantly."
-            ]
-        }
-    }
-};
+            ecommerce: {
+                title: "Coffee Shop Platform (BrewApp)",
+                desc: "A highly performant modular storefront ecosystem engineered with strict responsive layouts, secure transactional workflows, and complete sub-second interface refresh layers.",
+                tech: ["ReactJs", "Redux", "JavaScript", "HTML5", "CSS3", "REST APIs"],
+                images: [
+                    "assets/brewapp/home_cust.png", 
+                    "assets/brewapp/login.png", 
+                    "assets/brewapp/register.png", 
+                    "assets/brewapp/menu.png", 
+                    "assets/brewapp/menu detail.png", 
+                    "assets/brewapp/cart.png"
+                ],
+                url: "https://rendering-tarot-untamed.ngrok-free.dev/",
+                sellingPoints: {
+                    "🔄 Core Ecosystem & Adaptive Access": [
+                        "**Authentication Layer:** Dedicated, secure user portal for seamless onboarding via registration and login flows.",
+                        "**Flexible Role Switcher:** Instant role-exchange feature (Customer ⇄ User ⇄ Admin) within a single session to evaluate structural ecosystem flows."
+                    ],
+                    "☕ Customer Profile Feature Suite": [
+                        "**Smart Menu & Tailored Customization:** Explore interactive drink lists with advanced variable adjustments (milk alternatives, sweet levels, shot modifiers).",
+                        "**One-Click Reordering:** Instantly bookmark specific custom recipes into a personalized favorites log.",
+                        "**Digital Transaction Flows:** Frictionless point-of-sale checkout system integrated directly with historical receipts tracking."
+                    ],
+                    "🏃 Advanced User (Staff) Control Center": [
+                        "**Active Queue Management:** Real-time dashboard capabilities allowing operators to monitor, complete, or cancel processing orders.",
+                        "**Chronological Order Ledger:** Access a macro view covering both real-time operational lines and long-term historic archives."
+                    ],
+                    "📊 Executive Administrator Dashboards": [
+                        "**Data-Driven BI Hub:** Visual analytics charts rendering revenue trajectories, total order counts, and structural attendance spikes.",
+                        "**Workforce & Menu Infrastructure:** Control modules to instantly update menu prices, manage employee payroll/profiles, and register accounts.",
+                        "**Marketing Engine & Timeclock:** Deploy manual clock-in/out attendance markers and update system-wide landing page marketing banners instantly."
+                    ]
+                }
+            }
+        };
 
        function openProjectModal(projectKey) {
-    const data = projectData[projectKey];
-    if (!data) return;
+            const data = projectData[projectKey];
+            if (!data) return;
 
-    // Reset layout components to initial hidden/truncated states
-    isDescriptionExpanded = false;
-    
-    const descElement = document.getElementById("modalDescription");
-    descElement.className = "truncated-desc";
-    descElement.innerText = data.desc;
-    
-    // Hide features initially
-    const sellingPointsContainer = document.getElementById("modalSellingPoints");
-    sellingPointsContainer.style.display = "none";
-    
-    const toggleBtn = document.getElementById("toggleDescBtn");
-    toggleBtn.innerHTML = '<span>View Full Details</span> <i class="fa-solid fa-chevron-down"></i>';
+            // Reset layout components to initial hidden/truncated states
+            isDescriptionExpanded = false;
+            
+            const descElement = document.getElementById("modalDescription");
+            descElement.className = "truncated-desc";
+            descElement.innerText = data.desc;
+            
+            // Hide features initially
+            const sellingPointsContainer = document.getElementById("modalSellingPoints");
+            sellingPointsContainer.style.display = "none";
+            
+            const toggleBtn = document.getElementById("toggleDescBtn");
+            toggleBtn.innerHTML = '<span>View Full Details</span> <i class="fa-solid fa-chevron-down"></i>';
 
-    document.getElementById("modalTitle").innerText = data.title;
-    document.getElementById("modalLiveLink").href = data.url;
+            document.getElementById("modalTitle").innerText = data.title;
+            document.getElementById("modalLiveLink").href = data.url;
 
-    // Track Initialization
-    const track = document.getElementById("modalGalleryTrack");
-    track.innerHTML = ""; 
-    data.images.forEach(src => {
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = data.title;
-        img.style.width = "100%";
-        img.style.flexShrink = "0";
-        track.appendChild(img);
-    });
-
-    currentGalleryIndex = 0;
-    track.style.transform = "translateX(0px)";
-
-    // Badges Engine
-    const techContainer = document.getElementById("modalTechStack");
-    techContainer.innerHTML = "";
-    data.tech.forEach(techName => {
-        const span = document.createElement("span");
-        span.className = "tech-badge";
-        span.innerText = techName;
-        techContainer.appendChild(span);
-    });
-
-    // Content Population for Feature Section
-    sellingPointsContainer.innerHTML = "";
-    if (data.sellingPoints) {
-        Object.keys(data.sellingPoints).forEach(sectionTitle => {
-            const header = document.createElement("h4");
-            header.innerText = sectionTitle;
-            header.style.margin = "1rem 0 0.5rem 0";
-            header.style.color = "#2c3e50";
-            header.style.borderBottom = "1px solid #eee";
-            header.style.paddingBottom = "0.25rem";
-            sellingPointsContainer.appendChild(header);
-
-            const ul = document.createElement("ul");
-            ul.style.paddingLeft = "1.2rem";
-            ul.style.margin = "0 0 1rem 0";
-
-            data.sellingPoints[sectionTitle].forEach(point => {
-                const li = document.createElement("li");
-                li.style.marginBottom = "0.4rem";
-                li.style.fontSize = "0.95rem";
-                li.innerHTML = point.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                ul.appendChild(li);
+            // Track Initialization
+            const track = document.getElementById("modalGalleryTrack");
+            track.innerHTML = ""; 
+            data.images.forEach(src => {
+                const img = document.createElement("img");
+                img.src = src;
+                img.alt = data.title;
+                img.style.width = "100%";
+                img.style.flexShrink = "0";
+                track.appendChild(img);
             });
-            sellingPointsContainer.appendChild(ul);
-        });
-    }
 
-    document.getElementById("projectModal").style.display = "flex";
-}
+            currentGalleryIndex = 0;
+            track.style.transform = "translateX(0px)";
 
-function toggleDescription() {
-    const descElement = document.getElementById("modalDescription");
-    const toggleBtn = document.getElementById("toggleDescBtn");
-    const sellingPointsContainer = document.getElementById("modalSellingPoints");
-    
-    isDescriptionExpanded = !isDescriptionExpanded;
-    
-    if (isDescriptionExpanded) {
-        // Unhide Everything
-        descElement.className = "full-desc";
-        sellingPointsContainer.style.display = "block";
-        toggleBtn.innerHTML = '<span>Show Less</span> <i class="fa-solid fa-chevron-up"></i>';
-    } else {
-        // Hide/Truncate Back to Normal
-        descElement.className = "truncated-desc";
-        sellingPointsContainer.style.display = "none";
-        toggleBtn.innerHTML = '<span>View Full Details</span> <i class="fa-solid fa-chevron-down"></i>';
-    }
-}
+            // Badges Engine
+            const techContainer = document.getElementById("modalTechStack");
+            techContainer.innerHTML = "";
+            data.tech.forEach(techName => {
+                const span = document.createElement("span");
+                span.className = "tech-badge";
+                span.innerText = techName;
+                techContainer.appendChild(span);
+            });
+
+            // Content Population for Feature Section
+            sellingPointsContainer.innerHTML = "";
+            if (data.sellingPoints) {
+                Object.keys(data.sellingPoints).forEach(sectionTitle => {
+                    const header = document.createElement("h4");
+                    header.innerText = sectionTitle;
+                    header.style.margin = "1rem 0 0.5rem 0";
+                    header.style.color = "#2c3e50";
+                    header.style.borderBottom = "1px solid #eee";
+                    header.style.paddingBottom = "0.25rem";
+                    sellingPointsContainer.appendChild(header);
+
+                    const ul = document.createElement("ul");
+                    ul.style.paddingLeft = "1.2rem";
+                    ul.style.margin = "0 0 1rem 0";
+
+                    data.sellingPoints[sectionTitle].forEach(point => {
+                        const li = document.createElement("li");
+                        li.style.marginBottom = "0.4rem";
+                        li.style.fontSize = "0.95rem";
+                        li.innerHTML = point.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                        ul.appendChild(li);
+                    });
+                    sellingPointsContainer.appendChild(ul);
+                });
+            }
+
+            document.getElementById("projectModal").style.display = "flex";
+        }
+
+        function toggleDescription() {
+            const descElement = document.getElementById("modalDescription");
+            const toggleBtn = document.getElementById("toggleDescBtn");
+            const sellingPointsContainer = document.getElementById("modalSellingPoints");
+            
+            isDescriptionExpanded = !isDescriptionExpanded;
+            
+            if (isDescriptionExpanded) {
+                // Unhide Everything
+                descElement.className = "full-desc";
+                sellingPointsContainer.style.display = "block";
+                toggleBtn.innerHTML = '<span>Show Less</span> <i class="fa-solid fa-chevron-up"></i>';
+            } else {
+                // Hide/Truncate Back to Normal
+                descElement.className = "truncated-desc";
+                sellingPointsContainer.style.display = "none";
+                toggleBtn.innerHTML = '<span>View Full Details</span> <i class="fa-solid fa-chevron-down"></i>';
+            }
+        }
 
 
         function scrollGallery(direction) {
@@ -1275,14 +1429,6 @@ function toggleDescription() {
         const scrollIcon = document.getElementById('scrollIcon');
         
         window.onscroll = function() {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-                scrollBtn.classList.add('contact-mode');
-                scrollIcon.className = "fa-solid fa-arrow-up";
-            } else {
-                scrollBtn.classList.remove('contact-mode');
-                scrollIcon.className = "fa-solid fa-arrow-down";
-            }
-
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.sidebar-links a');
             
@@ -1304,12 +1450,51 @@ function toggleDescription() {
         };
 
         function handleScrollAction() {
-            if (scrollBtn.classList.contains('contact-mode')) {
-                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            const scrollBtn = document.getElementById('scrollBtn');
+            
+            if (scrollBtn.classList.contains('arrow-mode')) {
+                // At contact section: scroll smoothly to the absolute top of the site
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                // Everywhere else on the site: scroll down to the contact section
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         }
+
+        // Observe contact section milestones to toggle states cleanly
+        document.addEventListener("DOMContentLoaded", () => {
+            const contactSection = document.getElementById('contact');
+            const scrollBtn = document.getElementById('scrollBtn');
+            const scrollIcon = document.getElementById('scrollIcon');
+
+            if (contactSection && scrollBtn && scrollIcon) {
+                const observerOptions = {
+                    root: null, // evaluates interactions based on viewport frames
+                    threshold: 0.2 // switches as soon as 20% of the contact frame enters view
+                };
+
+                const contactObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Inside Contact Section: Swap to Up Arrow layout
+                            scrollBtn.classList.remove('whatsapp-mode');
+                            scrollBtn.classList.add('arrow-mode');
+                            scrollIcon.className = "fa-solid fa-chevron-up";
+                        } else {
+                            // Anywhere else on the website: Revert and hold WhatsApp configuration
+                            scrollBtn.classList.remove('arrow-mode');
+                            scrollBtn.classList.add('whatsapp-mode');
+                            scrollIcon.className = "fa-brands fa-whatsapp";
+                        }
+                    });
+                }, observerOptions);
+
+                contactObserver.observe(contactSection);
+            }
+        });
 
         window.onload = function() {
             document.querySelectorAll('[data-tr]').forEach(element => {
