@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arief Budiman | Portfolio</title>
     <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min.css">
+    <!-- <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css"> -->
     
     <style>
         :root {
@@ -353,6 +352,12 @@
             color: var(--light);
         }
 
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .project-info {
             padding: 1.5rem;
         }
@@ -594,6 +599,84 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
+        /* Description Text Constraints */
+        .truncated-desc {
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Truncates standard descriptions precisely at 2 lines */
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+            line-height: 1.6;
+            color: #555;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .full-desc {
+            display: block;
+            line-height: 1.6;
+            color: #222;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Detail Button styling */
+        .details-toggle-btn {
+            background: none;
+            border: none;
+            color: #6f4e37;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.25rem 0;
+            margin-top: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: opacity 0.2s;
+        }
+        .details-toggle-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* Dedicated Scroll Container for Features */
+        .scrollable-features-container {
+            max-height: 220px; /* Constrains lists nicely inside desktop/mobile bounds */
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #f0f0f0;
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            background: #fafafa;
+        }
+
+        /* Scrollbar Customization for Sleeker UX Views */
+        .scrollable-features-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .scrollable-features-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .scrollable-features-container::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+        .scrollable-features-container::-webkit-scrollbar-thumb:hover {
+            background: #b3b3b3;
+        }
+
+        /* Tech Badges styling */
+        .tech-badge {
+            padding: 0.3rem 0.75rem;
+            background: #f3f4f6;
+            color: #4b5563;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+
         /* --- Responsive Layout Rules --- */
         @media (max-width: 768px) {
             body { flex-direction: column; }
@@ -624,6 +707,34 @@
             section { padding: 60px 5%; }
             .lang-toggle-widget { top: 15px; right: 15px; padding: 8px 16px; }
         }
+
+       .btn-resume {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #0066da; /* Accent blue color */
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.btn-resume:hover {
+    background-color: #0052b4;
+    box-shadow: 0 2px 5px rgba(0,102,218,0.3);
+}
+
+.resume-icon {
+    width: 20px;
+    height: 20px;
+}
+
     </style>
 </head>
 <body>
@@ -640,14 +751,24 @@
 
     <main>
         
-        <!-- HOME SECTION -->
+       <!-- HOME SECTION -->
         <section id="home">
             <div class="about-content">
                 <img src="assets/img/avatar.jpg" alt="Arief" class="avatar">
                 <h1 data-tr="home_title">Hello! My name is Arief Budiman</h1>
                 <p class="subtitle" data-tr="home_subtitle">Graduated from Swiss German University with a Bachelor of Information Technology.</p>
+                
+                <!-- Updated Resume Button -->
+                <a href="resume.html" target="_blank" rel="noopener noreferrer" class="btn-resume" data-tr="home_resume_btn">
+                    <svg class="resume-icon" viewBox="0 0 24 24" xmlns="http://w3.org">
+                        <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                    <span>Resume</span>
+                </a>
             </div>
         </section>
+
+
 
         <!-- IDENTITY & JOURNEY SECTION -->
         <section id="journey">
@@ -703,49 +824,59 @@
                         <div class="timeline-category">
                             <h3 data-tr="hist_exp_title">Professional Experience</h3>
                             
+                            <!-- Role 1: Full-Stack React JS Developer -->
                             <div class="timeline-item">
                                 <div class="timeline-circle"></div>
                                 <div class="time-meta">2026 - Present</div>
-                                <h4 data-tr="exp1_title">Full-Stack React JS Developer (Self-Study & Online Courses)</h4>
+                                <h4 data-tr="exp1_title">Full-Stack React JS Developer (Self-Directed Study)</h4>
                                 <ul>
-                                    <li data-tr="exp1_b1">Focus on modern web architectures using React JS, Hooks, and Redux.</li>
-                                    <li data-tr="exp1_b2">Development of responsive user interfaces and API integration.</li>
+                                    <li data-tr="exp1_b1">Designing and developing dynamic web applications tailored to real-world requirements and evolving user needs.</li>
+                                    <li data-tr="exp1_b2">Implementing modular Single-Page Applications (SPA) utilizing React JS, Hooks, and Redux for optimized state management.</li>
+                                    <li>Developing responsive, user-centric web interfaces with a focus on seamless RESTful API integrations.</li>
                                 </ul>
                             </div>
 
+                            <!-- Role 2: Operations Associate (Connect2 / Kaufland) -->
                             <div class="timeline-item">
                                 <div class="timeline-circle"></div>
-                                <div class="time-meta">March - July 2023</div>
-                                <h4 data-tr="exp3_title">ServiceNow IT Remote | Snacc-IT GmbH, Aachen</h4>
+                                <div class="time-meta">2024 - Present</div>
+                                <h4 data-tr="exp2_title">Operations & Facility Management Associate | Connect2 Service GmbH (Kaufland Branch, Bad Salzungen)</h4>
                                 <ul>
-                                    <li data-tr="exp3_b1">Support of ServiceNow solutions and IT infrastructure in the home office.</li>
+                                    <li data-tr="exp2_b1">Maintaining high standards of facility cleanliness within designated areas under the direct supervision and coordination of Kaufland management.</li>
+                                    <li>Demonstrated agile, quick-thinking problem-solving skills when addressing sudden, on-site operational tasks.</li>
+                                    <li data-tr="exp2_b2">Utilized the German language daily in a business environment, significantly improving professional communication confidence and team collaboration.</li>
                                 </ul>
                             </div>
 
+                            <!-- Role 3: PHP Developer -->
                             <div class="timeline-item">
                                 <div class="timeline-circle"></div>
                                 <div class="time-meta">2023 - 2024</div>
                                 <h4 data-tr="exp4_title">PHP Developer (Freelance) | PT Tara Artha Mandiri, Indonesia</h4>
                                 <ul>
-                                    <li data-tr="exp4_b1">Development and maintenance of web applications based on PHP.</li>
+                                    <li data-tr="exp4_b1">Developed, extended, and maintained PHP-based web applications while optimizing relational SQL database queries for performance.</li>
                                 </ul>
                             </div>
 
+                            <!-- Role 4: ServiceNow IT Support -->
+                            <div class="timeline-item">
+                                <div class="timeline-circle"></div>
+                                <div class="time-meta">March - July 2023</div>
+                                <h4 data-tr="exp3_title">ServiceNow IT Support (Remote) | Snacc-IT GmbH, Aachen</h4>
+                                <ul>
+                                    <li data-tr="exp3_b1">Managed technical support requests, resolved system issues, and maintained corporate IT infrastructure through the ServiceNow platform.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Role 5: ASP.NET Developer -->
                             <div class="timeline-item">
                                 <div class="timeline-circle"></div>
                                 <div class="time-meta">2017 - 2020</div>
-                                <h4 data-tr="exp5_title">ASP.NET Developer | PT Adicipta Inovasi Teknologi, Indonesia</h4>
+                                <h4 data-tr="exp5_title">ASP.NET Developer & IT Support Engineer | PT Adicipta Inovasi Teknologi, Indonesia</h4>
                                 <ul>
-                                    <li data-tr="exp5_b1">Development of backend modules for enterprise applications with ASP.NET.</li>
-                                </ul>
-                            </div>
-
-                            <div class="timeline-item">
-                                <div class="timeline-circle"></div>
-                                <div class="time-meta">2024 - Present</div>
-                                <h4 data-tr="exp2_title">Operations Associate — Kaufland</h4>
-                                <ul>
-                                    <li data-tr="exp2_b1">Customer service and logistical coordination in store operations with daily use of the German language in a business context to increase communication confidence.</li>
+                                    <li data-tr="exp5_b1">Built core backend features using ASP.NET while collaborating with teams in an agile Scrum workspace.</li>
+                                    <li>Provided standby live support to diagnose and fix application errors for an enterprise-level financial leasing system (ERP/SAP-style environment).</li>
+                                    <li>Troubleshot production database issues and optimized queries using Microsoft SQL Server to maintain system performance.</li>
                                 </ul>
                             </div>
                         </div>
@@ -753,28 +884,31 @@
                         <div class="timeline-category">
                             <h3 data-tr="hist_edu_title">Education</h3>
                             
+                            <!-- Education 1: Master's Degree -->
                             <div class="timeline-item">
                                 <div class="timeline-circle"></div>
                                 <div class="time-meta">2020 - Expected 2026</div>
                                 <h4 data-tr="edu1_title">Master of Computer Science (M.Sc.) — Hochschule Schmalkalden, Germany</h4>
                                 <ul>
-                                    <li data-tr="edu1_b1">Specializations: Applied Computer Science, Software Architecture, Advanced Database Systems.</li>
-                                    <li data-tr="edu1_b2"><strong>Current Status:</strong> Writing Master's thesis in the field of modern web architectures.</li>
+                                    <li data-tr="edu1_b1">Advanced studies in Applied Computer Science, Software Architecture, and Advanced Database Systems.</li>
+                                    <li data-tr="edu1_b2"><strong>Master's Thesis:</strong> Evaluating the Robustness of Knowledge Discovery Pipelines: A Comparative Study of Synthetic and Real-World Financial Survey Data.</li>
                                 </ul>
                             </div>
                             
+                            <!-- Education 2: Bachelor's Degree -->
                             <div class="timeline-item active-focus">
                                 <div class="timeline-circle"></div>
-                                <div class="time-meta" data-tr="edu2_status">Graduated</div>
+                                <div class="time-meta" data-tr="edu2_status">Graduated (2013 - 2017)</div>
                                 <h4 data-tr="edu2_title">Bachelor of Information Technology (B.Sc.) — Swiss German University, Indonesia</h4>
                                 <ul>
-                                    <li data-tr="edu2_b1">Successfully completed degree with a strong focus on Software Engineering, IT Infrastructures, and System Analysis.</li>
-                                    <li data-tr="edu2_b2">The international curriculum provided in-depth knowledge in designing scalable software architectures and database-driven applications, combining theoretical excellence with practice-oriented joint projects in a global tech context.</li>
+                                    <li data-tr="edu2_b1">Successfully completed degree with a strong focus on Software Engineering, IT Infrastructures, and System Analysis within an international curriculum.</li>
+                                    <li data-tr="edu2_b2"><strong>Bachelor's Thesis:</strong> Analysis of Learning Management System for Students Using the Unified Theory of Acceptance and Use of Technology (UTAUT) (Case Study: Swiss German University).</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
@@ -783,13 +917,13 @@
             <h2 class="section-heading" data-tr="proj_title">Project Portfolio</h2>
             <div class="gallery-grid">
                 <div class="project-card" onclick="openProjectModal('ecommerce')">
-                    <div class="project-img"><i class="fa-solid fa-laptop-code fa-3x"></i></div>
+                    <div class="project-img"><img src="assets/brewapp/dashboard.png" alt=""></div>
                     <div class="project-info">
-                        <h3>E-Commerce Platform</h3>
+                        <h3>Coffee Shop Platform</h3>
                         <p data-tr="proj_click_hint">Click to see project details and tech stack.</p>
                     </div>
                 </div>
-                <div class="project-card" onclick="openProjectModal('analytics')">
+                <!-- <div class="project-card" onclick="openProjectModal('analytics')">
                     <div class="project-img"><i class="fa-solid fa-database fa-3x"></i></div>
                     <div class="project-info">
                         <h3>Cloud Analytics Layer</h3>
@@ -802,7 +936,7 @@
                         <h3>Portfolio Showcase</h3>
                         <p data-tr="proj_click_hint">Click to see project details and tech stack.</p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </section>
 
@@ -835,19 +969,28 @@
     <div class="modal" id="projectModal" onclick="closeProjectModalOutside(event)">
         <div class="modal-content">
             <span class="close-modal" onclick="closeProjectModal()">&times;</span>
-            <h3 id="modalTitle">Project Title</h3>
+            <h3 id="modalTitle">BrewApp</h3>
             
             <div class="modal-gallery">
                 <div class="modal-gallery-track" id="modalGalleryTrack"></div>
-                                <button class="gallery-nav prev" onclick="scrollGallery(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="gallery-nav prev" onclick="scrollGallery(-1)"><i class="fa-solid fa-chevron-left"></i></button>
                 <button class="gallery-nav next" onclick="scrollGallery(1)"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
 
-            <p id="modalDescription">Detailed project description goes here...</p>
+            <!-- Description Container with Short View Toggle -->
+            <div class="description-section" style="margin-bottom: 1.5rem;">
+                <div id="modalDescription" class="truncated-desc">Detailed project description goes here...</div>
+                <button id="toggleDescBtn" onclick="toggleDescription()" class="details-toggle-btn">
+                    <span>View Full Details</span> <i class="fa-solid fa-chevron-down"></i>
+                </button>
+            </div>
+
+            <!-- Scrollable Feature & Selling Points Container -->
+            <div id="modalSellingPoints" class="scrollable-features-container"></div>
             
             <div style="margin-bottom: 1.5rem;">
                 <strong data-tr="modal_tech">Tech Stack:</strong>
-                <div class="tech-stack" id="modalTechStack"></div>
+                <div class="tech-stack" id="modalTechStack" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;"></div>
             </div>
 
             <a href="#" id="modalLiveLink" target="_blank" class="live-btn">
@@ -861,73 +1004,114 @@
 
     <!-- Floating Navigation Action Button (Transforms to Contact Icon on scroll bottom) -->
     <div class="scroll-indicator" id="scrollBtn" onclick="handleScrollAction()">
-        <i class="ri-arrow-down-line" id="scrollIcon"></i>
+        <i class="fa fa-arrow-down" id="scrollIcon"></i>
     </div>
 
     <script>
         // Dual-Language Dictionary
         const translations = {
-            en: {
-                nav_home: "Home", nav_journey: "Journey", nav_project: "Project", nav_contact: "Contact",
-                home_title: "Hello! My name is Arief Budiman",
-                home_subtitle: "Graduated from Swiss German University with a Bachelor of Information Technology.",
-                journey_title: "Identity & Journey", tab_about: "About", tab_skills: "Skills", tab_history: "History",
-                about_content: "Based in Germany, I specialize in Software Engineering and IT Solutions. I turn ideas into reality through clean data layers, strong architectural code patterns, and pixel-perfect presentation execution.",
-                skills_backend: "Backend & Core", skills_frontend: "Frontend & Web", skills_tools: "Tools & Infrastructure",
-                hist_exp_title: "Professional Experience", hist_edu_title: "Education",
-                exp1_title: "Full-Stack React JS Developer (Self-Study & Online Courses)",
-                exp1_b1: "Focus on modern web architectures using React JS, Hooks, and Redux.",
-                exp1_b2: "Development of responsive user interfaces and API integration.",
-                exp2_title: "Operations Associate — Kaufland",
-                exp2_b1: "Customer service and logistical coordination in store operations with daily use of the German language in a business context to increase communication confidence.",
-                exp3_title: "ServiceNow IT Remote | Snacc-IT GmbH, Aachen",
-                exp3_b1: "Support of ServiceNow solutions and IT infrastructure in the home office.",
-                exp4_title: "PHP Developer (Freelance) | PT Tara Artha Mandiri, Indonesia",
-                exp4_b1: "Development and maintenance of web applications based on PHP.",
-                exp5_title: "ASP.NET Developer | PT Adicipta Inovasi Teknologi, Indonesia",
-                exp5_b1: "Development of backend modules for enterprise applications with ASP.NET.",
-                edu1_title: "Master of Computer Science (M.Sc.) — Hochschule Schmalkalden, Germany",
-                edu1_b1: "Specializations: Applied Computer Science, Software Architecture, Advanced Database Systems.",
-                edu1_b2: "Current Status: Writing Master's thesis in the field of modern web architectures.",
-                edu2_title: "Bachelor of Information Technology (B.Sc.) — Swiss German University, Indonesia",
-                edu2_status: "Graduated",
-                edu2_b1: "Successfully completed degree with a strong focus on Software Engineering, IT Infrastructures, and System Analysis.",
-                edu2_b2: "The international curriculum provided in-depth knowledge in designing scalable software architectures and database-driven applications, combining theoretical excellence with practice-oriented joint projects in a global tech context.",
-                proj_title: "Project Portfolio", proj_click_hint: "Click to see project details and tech stack.",
-                contact_title: "Contact Me", form_name: "Name", form_email: "Email", form_msg: "Message", form_send: "Send Message",
-                modal_tech: "Tech Stack:", modal_live: "Visit Live Website"
-            },
-            de: {
-                nav_home: "Startseite", nav_journey: "Werdegang", nav_project: "Projekte", nav_contact: "Kontakt",
-                home_title: "Hallo! Ich heiße Arief Budiman",
-                home_subtitle: "Absolvent der Swiss German University mit einem Bachelor of Information Technology.",
-                journey_title: "Identität & Werdegang", tab_about: "Über mich", tab_skills: "Fähigkeiten", tab_history: "Historie",
-                about_content: "Ansässig in Deutschland, spezialisiert auf Software Engineering und IT-Lösungen. Ich lasse Ideen durch saubere Datenschichten, robuste Architekturmuster und pixelgenaue Oberflächenarchitektur Realität werden.",
-                skills_backend: "Backend & Kernkompetenzen", skills_frontend: "Frontend & Web", skills_tools: "Werkzeuge & Infrastruktur",
-                hist_exp_title: "Berufserfahrung", hist_edu_title: "Ausbildung",
-                exp1_title: "Full-Stack React JS Developer (Selbststudium & Online-Kurse)",
-                exp1_b1: "Fokus auf moderne Web-Architekturen mit React JS, Hooks und Redux.",
-                exp1_b2: "Entwicklung von responsiven Benutzeroberflächen und API-Integrationen.",
-                exp2_title: "Mitarbeiter im operativen Geschäft — Kaufland",
-                exp2_b1: "Kundenbetreuung und logistische Koordination im Marktbetrieb unter täglichem Einsatz der deutschen Sprache im geschäftlichen Kontext zur Steigerung der Kommunikationssicherheit.",
-                exp3_title: "ServiceNow IT Remote | Snacc-IT GmbH, Aachen",
-                exp3_b1: "Betreuung von ServiceNow-Lösungen und IT-Infrastruktur im Homeoffice.",
-                exp4_title: "PHP Developer (Freelance) | PT Tara Artha Mandiri, Indonesien",
-                exp4_b1: "Entwicklung und Wartung von Webanwendungen auf PHP-Basis.",
-                exp5_title: "ASP.NET Developer | PT Adicipta Inovasi Teknologi, Indonesien",
-                exp5_b1: "Entwicklung von Backend-Modulen für Unternehmensanwendungen mit ASP.NET.",
-                edu1_title: "Master of Computer Science (M.Sc.) — Hochschule Schmalkalden, Deutschland",
-                edu1_b1: "Schwerpunkte: Angewandte Informatik, Softwarearchitektur, Fortgeschrittene Datenbanksysteme.",
-                edu1_b2: "Aktueller Status: Verfassung der Masterarbeit im Bereich moderner Webarchitekturen.",
-                edu2_title: "Bachelor of Information Technology (B.Sc.) — Swiss German University, Indonesien",
-                edu2_status: "Graduiert",
-                edu2_b1: "Erfolgreicher Abschluss des Studiums mit starkem Fokus auf Software Engineering, IT-Infrastrukturen und Systemanalyse.",
-                edu2_b2: "Das internationale Curriculum vermittelte tiefgehende Kenntnisse im Design skalierbarer Softwarearchitekturen sowie datenbankgestützter Anwendungen und kombinierte theoretische Exzellenz mit praxisorientierten Verbundprojekten im globalen Tech-Kontext.",
-                proj_title: "Projektportfolio", proj_click_hint: "Klicken für Projektdetails und Tech-Stack.",
-                contact_title: "Kontaktieren Sie mich", form_name: "Name", form_email: "E-Mail", form_msg: "Nachricht", form_send: "Nachricht senden",
-                modal_tech: "Technologien:", modal_live: "Live-Website besuchen"
-            }
-        };
+        en: {
+            nav_home: "Home", nav_journey: "Journey", nav_project: "Project", nav_contact: "Contact",
+            home_title: "Hello! My name is Arief Budiman",
+            home_subtitle: "Graduated from Swiss German University with a Bachelor of Information Technology.",
+            journey_title: "Identity & Journey", tab_about: "About", tab_skills: "Skills", tab_history: "History",
+            about_content: "Based in Germany, I specialize in Software Engineering and IT Solutions. I turn ideas into reality through clean data layers, strong architectural code patterns, and pixel-perfect presentation execution.",
+            skills_backend: "Backend & Core", skills_frontend: "Frontend & Web", skills_tools: "Tools & Infrastructure",
+            hist_exp_title: "Professional Experience", hist_edu_title: "Education",
+            
+            // Full-Stack React Developer
+            exp1_title: "Full-Stack React JS Developer (Self-Directed Study)",
+            exp1_b1: "Designing and developing dynamic web applications tailored to real-world requirements and evolving user needs.",
+            exp1_b2: "Implementing modular Single-Page Applications (SPA) utilizing React JS, Hooks, and Redux for optimized state management.",
+            exp1_b3: "Developing responsive, user-centric web interfaces with a focus on seamless RESTful API integrations.",
+            
+            // Connect2 / Kaufland Operations Associate
+            exp2_title: "Operations & Facility Management Associate | Connect2 Service GmbH (Kaufland Branch)",
+            exp2_b1: "Maintaining high standards of facility cleanliness within designated areas under the direct supervision and coordination of Kaufland management.",
+            exp2_b2: "Demonstrated agile, quick-thinking problem-solving skills when addressing sudden, on-site operational tasks.",
+            exp2_b3: "Utilized the German language daily in a business environment, significantly improving professional communication confidence and team collaboration.",
+            
+            // PHP Developer (Freelance)
+            exp4_title: "PHP Developer (Freelance) | PT Tara Artha Mandiri, Indonesia",
+            exp4_b1: "Developed, extended, and maintained PHP-based web applications while optimizing relational SQL database queries for performance.",
+            
+            // ServiceNow Support
+            exp3_title: "ServiceNow IT Support (Remote) | Snacc-IT GmbH",
+            exp3_b1: "Managed technical support requests, resolved system issues, and maintained corporate IT infrastructure through the ServiceNow platform.",
+            
+            // ASP.NET Developer
+            exp5_title: "ASP.NET Developer & IT Support Engineer | PT Adicipta Inovasi Teknologi, Indonesia",
+            exp5_b1: "Built core backend features using ASP.NET while collaborating with teams in an agile Scrum workspace.",
+            exp5_b2: "Provided standby live support to diagnose and fix application errors for an enterprise-level financial leasing system (ERP/SAP-style environment).",
+            exp5_b3: "Troubleshot production database issues and optimized queries using Microsoft SQL Server to maintain system performance.",
+            
+            // Master of Computer Science
+            edu1_title: "Master of Computer Science (M.Sc.) — Hochschule Schmalkalden, Germany",
+            edu1_b1: "Advanced studies in Applied Computer Science, Cloud Infrastructures, and Intelligent Systems.",
+            edu1_b2: "Master's Thesis: Evaluating the Robustness of Knowledge Discovery Pipelines: A Comparative Study of Synthetic and Real-World Financial Survey Data.",
+            
+            // Bachelor of Information Technology
+            edu2_title: "Bachelor of Information Technology (B.Sc.) — Swiss German University, Indonesia",
+            edu2_status: "Graduated (2013 - 2017)",
+            edu2_b1: "Successfully completed degree with a strong focus on Software Engineering, IT Infrastructures, and System Analysis within an international curriculum.",
+            edu2_b2: "Bachelor's Thesis: Analysis of Learning Management System for Students Using the Unified Theory of Acceptance and Use of Technology (UTAUT) (Case Study: Swiss German University).",
+            
+            proj_title: "Project Portfolio", proj_click_hint: "Click to see project details and tech stack.",
+            contact_title: "Contact Me", form_name: "Name", form_email: "Email", form_msg: "Message", form_send: "Send Message",
+            modal_tech: "Tech Stack:", modal_live: "Visit Live Website"
+        },
+        de: {
+            nav_home: "Startseite", nav_journey: "Werdegang", nav_project: "Projekte", nav_contact: "Kontakt",
+            home_title: "Hallo! Ich heiße Arief Budiman",
+            home_subtitle: "Absolvent der Swiss German University mit einem Bachelor of Information Technology.",
+            journey_title: "Identität & Werdegang", tab_about: "Über mich", tab_skills: "Fähigkeiten", tab_history: "Historie",
+            about_content: "Ansässig in Deutschland, spezialisiert auf Software Engineering und IT-Lösungen. Ich lasse Ideen durch saubere Datenschichten, robuste Architekturmuster und pixelgenaue Oberflächenarchitektur Realität werden.",
+            skills_backend: "Backend & Kernkompetenzen", skills_frontend: "Frontend & Web", skills_tools: "Werkzeuge & Infrastruktur",
+            hist_exp_title: "Berufserfahrung", hist_edu_title: "Ausbildung",
+            
+            // Full-Stack React Developer (DE)
+            exp1_title: "Full-Stack React JS-Entwickler (Selbststudium)",
+            exp1_b1: "Konzeption und Entwicklung dynamischer Webanwendungen, die auf reale Anforderungen und sich entwickelnde Benutzerbedürfnisse zugeschnitten sind.",
+            exp1_b2: "Implementierung modularer Single-Page-Applications (SPA) unter Verwendung von React JS, Hooks und Redux für ein optimiertes Zustandsmanagement.",
+            exp1_b3: "Entwicklung reaktionsschneller, benutzerzentrierter Webschnittstellen mit Fokus auf nahtlose RESTful-API-Integrationen.",
+            
+            // Connect2 / Kaufland Operations Associate (DE)
+            exp2_title: "Mitarbeiter im operativen Geschäft & Facility Management | Connect2 Service GmbH (Kaufland-Filiale)",
+            exp2_b1: "Aufrechterhaltung hoher Standards bei der Sauberkeit von Einrichtungen in bestimmten Bereichen unter direkter Aufsicht und Koordination des Kaufland-Managements.",
+            exp2_b2: "Nachgewiesene agile, vorausschauende Problemlösungskompetenz bei plötzlichen betrieblichen Aufgaben vor Ort.",
+            exp2_b3: "Tägliche Nutzung der deutschen Sprache im geschäftlichen Umfeld, was die professionelle Kommunikationssicherheit und die Zusammenarbeit im Team erheblich verbesserte.",
+            
+            // PHP Developer (Freelance) (DE)
+            exp4_title: "PHP-Entwickler (Freiberuflich) | PT Tara Artha Mandiri, Indonesien",
+            exp4_b1: "Entwicklung, Erweiterung und Wartung von PHP-basierten Webanwendungen bei gleichzeitiger Optimierung relationaler SQL-Datenbankabfragen für die Performance.",
+            
+            // ServiceNow Support (DE)
+            exp3_title: "ServiceNow IT-Support (Remote) | Snacc-IT GmbH",
+            exp3_b1: "Verwaltung von technischen Supportanfragen, Behebung von Systemproblemen und Pflege der IT-Infrastruktur des Unternehmens über die ServiceNow-Plattform.",
+            
+            // ASP.NET Developer (DE)
+            exp5_title: "ASP.NET-Entwickler & IT-Support-Ingenieur | PT Adicipta Inovasi Technologie, Indonesien",
+            exp5_b1: "Entwicklung von Core-Backend-Features mit ASP.NET sowie Zusammenarbeit mit Teams in einem agilen Scrum-Arbeitsbereich.",
+            exp5_b2: "Bereitstellung von Live-Support zur Diagnose und Behebung von Anwendungsfehlern für ein Finanzleasingsystem auf Unternehmensebene (ERP/SAP-ähnliche Umgebung).",
+            exp5_b3: "Fehlerbehebung bei Problemen mit Produktionsdatenbanken und Optimierung von Abfragen mit Microsoft SQL Server zur Aufrechterhaltung der Systemleistung.",
+            
+            // Master of Computer Science (DE)
+            edu1_title: "Master of Computer Science (M.Sc.) — Hochschule Schmalkalden, Deutschland",
+            edu1_b1: "Vertiefungsstudium in Angewandter Informatik, Cloud-Infrastrukturen und Intelligenten Systemen.",
+            edu1_b2: "Masterarbeit: Evaluating the Robustness of Knowledge Discovery Pipelines: A Comparative Study of Synthetic and Real-World Financial Survey Data.",
+            
+            // Bachelor of Information Technology (DE)
+            edu2_title: "Bachelor of Information Technology (B.Sc.) — Swiss German University, Indonesien",
+            edu2_status: "Graduiert (2013 - 2017)",
+            edu2_b1: "Erfolgreicher Abschluss des Studiums mit starkem Fokus auf Software Engineering, IT-Infrastrukturen und Systemanalyse im Rahmen eines internationalen Curriculums.",
+            edu2_b2: "Bachelorarbeit: Analysis of Learning Management System for Students Using the Unified Theory of Acceptance and Use of Technology (UTAUT) (Case Study: Swiss German University).",
+            
+            proj_title: "Projektportfolio", proj_click_hint: "Klicken für Projektdetails und Tech-Stack.",
+            contact_title: "Kontaktieren Sie mich", form_name: "Name", form_email: "E-Mail", form_msg: "Nachricht", form_send: "Nachricht senden",
+            modal_tech: "Technologien:", modal_live: "Live-Website besuchen"
+        }
+    };
+
 
         let currentLang = 'en';
 
@@ -950,124 +1134,166 @@
         }
 
         const projectData = {
-            ecommerce: {
-                title: "E-Commerce Platform",
-                desc: "A highly performant modular storefront ecosystem engineered with strict responsive layouts, secure transactional workflows, and complete sub-second interface refresh layers.",
-                tech: ["ReactJs", "Redux", "JavaScript", "HTML5", "CSS3", "REST APIs"],
-                images: ["https://picsum.photos", "https://picsum.photos", "https://picsum.photos"],
-                url: "https://example.com"
-            },
-            analytics: {
-                title: "Cloud Analytics Layer",
-                desc: "An enterprise analytical data pipeline built to aggregate incoming streams into robust relational representations utilizing optimized relational logic matrices.",
-                tech: ["C#", "ASP.NET", "SQL", "REST APIs", "Git"],
-                images: ["https://picsum.photos", "https://picsum.photos"],
-                url: "https://example.com"
-            },
-            portfolio: {
-                title: "Portfolio Showcase",
-                desc: "An adaptive single-page web framework optimized for swift performance layout configurations showcasing distinct identity, workflow timelines, and modal modules.",
-                tech: ["JavaScript", "HTML5", "CSS3", "Git"],
-                images: ["https://picsum.photos", "https://picsum.photos"],
-                url: "https://example.com"
-            }
-        };
+    ecommerce: {
+        title: "Coffee Shop Platform (BrewApp)",
+        desc: "The platform is designed to make your daily coffee ritual faster, smarter, and tailored perfectly to your taste.",
+        tech: ["ReactJs", "Redux", "JavaScript", "HTML5", "CSS3", "REST APIs"],
+        images: [
+            "assets/brewapp/home_cust.png", 
+            "assets/brewapp/login.png", 
+            "assets/brewapp/register.png", 
+            "assets/brewapp/menu.png", 
+            "assets/brewapp/menu detail.png", 
+            "assets/brewapp/cart.png"
+        ],
+        url: "https://rendering-tarot-untamed.ngrok-free.dev/",
+        sellingPoints: {
+            "🔄 Core Ecosystem & Adaptive Access": [
+                "**Authentication Layer:** Dedicated, secure user portal for seamless onboarding via registration and login flows.",
+                "**Flexible Role Switcher:** Instant role-exchange feature (Customer ⇄ User ⇄ Admin) within a single session to evaluate structural ecosystem flows."
+            ],
+            "☕ Customer Profile Feature Suite": [
+                "**Smart Menu & Tailored Customization:** Explore interactive drink lists with advanced variable adjustments (milk alternatives, sweet levels, shot modifiers).",
+                "**One-Click Reordering:** Instantly bookmark specific custom recipes into a personalized favorites log.",
+                "**Digital Transaction Flows:** Frictionless point-of-sale checkout system integrated directly with historical receipts tracking."
+            ],
+            "🏃 Advanced User (Staff) Control Center": [
+                "**Active Queue Management:** Real-time dashboard capabilities allowing operators to monitor, complete, or cancel processing orders.",
+                "**Chronological Order Ledger:** Access a macro view covering both real-time operational lines and long-term historic archives."
+            ],
+            "📊 Executive Administrator Dashboards": [
+                "**Data-Driven BI Hub:** Visual analytics charts rendering revenue trajectories, total order counts, and structural attendance spikes.",
+                "**Workforce & Menu Infrastructure:** Control modules to instantly update menu prices, manage employee payroll/profiles, and register accounts.",
+                "**Marketing Engine & Timeclock:** Deploy manual clock-in/out attendance markers and update system-wide landing page marketing banners instantly."
+            ]
+        }
+    }
+};
 
-        function openProjectModal(projectId) {
-            const data = projectData[projectId];
-            if (!data) return;
-            
-            document.getElementById('modalTitle').innerText = data.title;
-            document.getElementById('modalDescription').innerText = data.desc;
-            document.getElementById('modalLiveLink').href = data.url;
-            
-            const track = document.getElementById('modalGalleryTrack');
-            track.innerHTML = '';
-            data.images.forEach(imgSrc => {
-                const img = document.createElement('img');
-                img.src = imgSrc;
-                img.alt = data.title;
-                track.appendChild(img);
+let currentGalleryIndex = 0;
+let isDescriptionExpanded = false;
+
+function openProjectModal(projectKey) {
+    const data = projectData[projectKey];
+    if (!data) return;
+
+    // Reset layout components to initial hidden/truncated states
+    isDescriptionExpanded = false;
+    
+    const descElement = document.getElementById("modalDescription");
+    descElement.className = "truncated-desc";
+    descElement.innerText = data.desc;
+    
+    // Hide features initially
+    const sellingPointsContainer = document.getElementById("modalSellingPoints");
+    sellingPointsContainer.style.display = "none";
+    
+    const toggleBtn = document.getElementById("toggleDescBtn");
+    toggleBtn.innerHTML = '<span>View Full Details</span> <i class="fa-solid fa-chevron-down"></i>';
+
+    document.getElementById("modalTitle").innerText = data.title;
+    document.getElementById("modalLiveLink").href = data.url;
+
+    // Track Initialization
+    const track = document.getElementById("modalGalleryTrack");
+    track.innerHTML = ""; 
+    data.images.forEach(src => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = data.title;
+        img.style.width = "100%";
+        img.style.flexShrink = "0";
+        track.appendChild(img);
+    });
+
+    currentGalleryIndex = 0;
+    track.style.transform = "translateX(0px)";
+
+    // Badges Engine
+    const techContainer = document.getElementById("modalTechStack");
+    techContainer.innerHTML = "";
+    data.tech.forEach(techName => {
+        const span = document.createElement("span");
+        span.className = "tech-badge";
+        span.innerText = techName;
+        techContainer.appendChild(span);
+    });
+
+    // Content Population for Feature Section
+    sellingPointsContainer.innerHTML = "";
+    if (data.sellingPoints) {
+        Object.keys(data.sellingPoints).forEach(sectionTitle => {
+            const header = document.createElement("h4");
+            header.innerText = sectionTitle;
+            header.style.margin = "1rem 0 0.5rem 0";
+            header.style.color = "#2c3e50";
+            header.style.borderBottom = "1px solid #eee";
+            header.style.paddingBottom = "0.25rem";
+            sellingPointsContainer.appendChild(header);
+
+            const ul = document.createElement("ul");
+            ul.style.paddingLeft = "1.2rem";
+            ul.style.margin = "0 0 1rem 0";
+
+            data.sellingPoints[sectionTitle].forEach(point => {
+                const li = document.createElement("li");
+                li.style.marginBottom = "0.4rem";
+                li.style.fontSize = "0.95rem";
+                li.innerHTML = point.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                ul.appendChild(li);
             });
-            track.style.transform = "translateX(0px)";
+            sellingPointsContainer.appendChild(ul);
+        });
+    }
 
-            const techContainer = document.getElementById('modalTechStack');
-            techContainer.innerHTML = '';
-            data.tech.forEach(tech => {
-                const span = document.createElement('span');
-                span.className = 'tech-tag';
-                span.innerText = tech;
-                techContainer.appendChild(span);
-            });
-            
-            document.getElementById('projectModal').style.display = 'flex';
-        }
+    document.getElementById("projectModal").style.display = "flex";
+}
 
-        function scrollGallery(direction) {
-            const track = document.getElementById('modalGalleryTrack');
-            const totalWidth = track.scrollWidth;
-            const viewWidth = track.parentElement.clientWidth;
-            let currentX = parseInt(track.style.transform.replace(/[^\d-]/g, '')) || 0;
-            
-            let newX = currentX + (direction * -viewWidth);
-            if (newX < -(totalWidth - viewWidth)) newX = 0;
-            if (newX > 0) newX = -(totalWidth - viewWidth);
-            
-            track.style.transform = `translateX(${newX}px)`;
-        }
+function toggleDescription() {
+    const descElement = document.getElementById("modalDescription");
+    const toggleBtn = document.getElementById("toggleDescBtn");
+    const sellingPointsContainer = document.getElementById("modalSellingPoints");
+    
+    isDescriptionExpanded = !isDescriptionExpanded;
+    
+    if (isDescriptionExpanded) {
+        // Unhide Everything
+        descElement.className = "full-desc";
+        sellingPointsContainer.style.display = "block";
+        toggleBtn.innerHTML = '<span>Show Less</span> <i class="fa-solid fa-chevron-up"></i>';
+    } else {
+        // Hide/Truncate Back to Normal
+        descElement.className = "truncated-desc";
+        sellingPointsContainer.style.display = "none";
+        toggleBtn.innerHTML = '<span>View Full Details</span> <i class="fa-solid fa-chevron-down"></i>';
+    }
+}
 
-        function closeProjectModal() {
-            document.getElementById('projectModal').style.display = 'none';
-        }
 
-        function closeProjectModalOutside(event) {
-            if (event.target.id === 'projectModal') {
-                closeProjectModal();
-            }
-        }
+function scrollGallery(direction) {
+    const track = document.getElementById("modalGalleryTrack");
+    const images = track.getElementsByTagName("img");
+    if (images.length === 0) return;
 
-        function switchTab(event, tabId) {
-            const tabs = document.querySelectorAll('.tab-btn');
-            const contents = document.querySelectorAll('.tab-content');
-            
-            tabs.forEach(tab => tab.classList.remove('active'));
-            contents.forEach(content => content.classList.remove('active'));
-            
-            event.currentTarget.classList.add('active');
-            document.getElementById(tabId).classList.add('active');
-        }
+    currentGalleryIndex += direction;
+    if (currentGalleryIndex < 0) currentGalleryIndex = images.length - 1;
+    if (currentGalleryIndex >= images.length) currentGalleryIndex = 0;
 
-        const scrollBtn = document.getElementById('scrollBtn');
-        const scrollIcon = document.getElementById('scrollIcon');
-        
-        window.onscroll = function() {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-                scrollBtn.classList.add('contact-mode');
-                scrollIcon.className = "fa-solid fa-envelope";
-            } else {
-                scrollBtn.classList.remove('contact-mode');
-                scrollIcon.className = "fa-solid fa-arrow-down";
-            }
+    // Safe dynamic bounding box measurement for slider transforms
+    const slideWidth = track.parentElement.clientWidth;
+    track.style.transition = "transform 0.3s ease-in-out";
+    track.style.transform = `translateX(${-currentGalleryIndex * slideWidth}px)`;
+}
 
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.sidebar-links a');
-            
-            sections.forEach(section => {
-                const top = window.scrollY;
-                const offset = section.offsetTop - 150;
-                const height = section.offsetHeight;
-                const id = section.getAttribute('id');
-                
-                if (top >= offset && top < offset + height) {
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === '#' + id) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            });
-        };
+function closeProjectModal() {
+    document.getElementById("projectModal").style.display = "none";
+}
+
+function closeProjectModalOutside(event) {
+    if (event.target.id === "projectModal") {
+        closeProjectModal();
+    }
+}
 
         function handleScrollAction() {
             if (scrollBtn.classList.contains('contact-mode')) {
