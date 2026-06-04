@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lebenslauf | Arief Budiman</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <style>
+        :root {
+            --primary: #1e293b;
+            --secondary: #2563eb;
+            --text-dark: #0f172a;
+            --text-light: #475569;
+            --bg-accent: #f8fafc;
+            --border: #e2e8f0;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: var(--text-dark); line-height: 1.35; padding: 15px; }
+
+        /* --- Page Size Optimized Canvas Box --- */
+        .resume-container { 
+            max-width: 780px; 
+            margin: 0 auto; 
+            background: var(--white); 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04); 
+            border-radius: 4px; 
+            overflow: hidden; 
+        }
+
+        /* --- Header Section Panel --- */
+        header { background: var(--primary); color: var(--white); padding: 18px 25px; display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center; }
+        .profile-img { width: 75px; height: 75px; border-radius: 50%; border: 2px solid var(--secondary); object-fit: cover; }
+        .header-text h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 2px; }
+        .header-text .title { font-size: 1rem; color: #94a3b8; font-weight: 400; }
+
+        /* --- Contact Meta Info Row --- */
+        .contact-bar { background: #111827; padding: 8px 25px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+        .contact-item { display: flex; align-items: center; gap: 6px; color: #cbd5e1; font-size: 0.78rem; }
+        .contact-item i { color: var(--secondary); width: 6px; text-align: center; }
+        .contact-item a { color: inherit; text-decoration: none; }
+
+        /* --- Strict Two-Column Sheet Layout --- */
+        .main-layout { display: grid; grid-template-columns: 220px 1fr; gap: 20px; padding: 20px 25px; }
+        .left-col { display: flex; flex-direction: column; gap: 15px; border-right: 1px solid var(--border); padding-right: 15px; }
+        .right-col { display: flex; flex-direction: column; gap: 16px; }
+
+        /* --- Typography & Structural Anchors --- */
+        .section-title { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .section-title i { color: var(--secondary); font-size: 0.8rem; }
+        .section-title::after { content: ''; flex-grow: 1; height: 1px; background: var(--border); }
+        
+        .profile-text { color: var(--text-light); font-size: 0.78rem; text-align: justify; line-height: 1.35; }
+
+        /* --- Work & Academic Entry Blocks --- */
+        .entry-group { display: flex; flex-direction: column; gap: 10px; }
+        .entry { display: flex; flex-direction: column; gap: 1px; }
+        .entry-header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .entry-title { font-size: 0.88rem; font-weight: 600; color: var(--text-dark); }
+        .entry-company { font-size: 0.82rem; font-weight: 500; color: var(--secondary); }
+        .entry-date { font-size: 0.72rem; color: var(--text-light); font-weight: 600; background: var(--bg-accent); padding: 1px 5px; border-radius: 3px; white-space: nowrap; }
+        
+        .entry-list { list-style: none; margin-top: 2px; display: flex; flex-direction: column; gap: 1.5px; }
+        .entry-list li { font-size: 0.78rem; color: var(--text-light); position: relative; padding-left: 10px; text-align: justify; }
+        .entry-list li::before { content: '•'; position: absolute; left: 0; color: var(--secondary); font-weight: bold; }
+
+        /* --- Tech Stack Tag Badge Arrays --- */
+        .skills-container { display: flex; flex-direction: column; gap: 8px; }
+        .skill-group { display: flex; flex-direction: column; gap: 3px; }
+        .skill-group-title { font-size: 0.72rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.3px; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+        .tag { background: var(--bg-accent); border: 1px solid var(--border); color: var(--text-dark); padding: 1px 6px; border-radius: 4px; font-size: 0.72rem; font-weight: 500; }
+
+        /* --- Sidebar Metadata Fields List --- */
+        .meta-list { display: flex; flex-direction: column; gap: 4px; }
+        .meta-item { font-size: 0.76rem; color: var(--text-light); position: relative; padding-left: 10px; line-height: 1.3; }
+        .meta-item::before { content: '›'; position: absolute; left: 0; color: var(--secondary); font-weight: bold; font-size: 0.85rem; top: -1px; }
+        .meta-item strong { color: var(--text-dark); font-weight: 600; }
+
+        /* --- HARD PRINT LAYOUT MAP TO FORCE 1 LETTER SHEET --- */
+        @media print {
+            body { background: none; padding: 0; color: #000000; }
+            .resume-container { box-shadow: none; border-radius: 0; max-width: 100%; width: 100%; }
+            header { background: #1e293b !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 12px 20px; }
+            .contact-bar { background: #111827 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 6px 20px; }
+            .main-layout { padding: 15px 20px; gap: 15px; }
+            .tag { background: #f8fafc !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .entry-date { background: #f8fafc !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            @page { size: letter; margin: 0.25in; }
+        }
+
+        /* --- Smartphone Core Adaptive Breakpoints --- */
+        @media (max-width: 768px) {
+            body { padding: 5px; }
+            header { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 15px; }
+            .contact-bar { flex-direction: column; align-items: center; gap: 4px; }
+            .main-layout { grid-template-columns: 1fr; padding: 15px; gap: 15px; }
+            .left-col { border-right: none; padding-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+            .entry-header { flex-direction: column; gap: 1px; }
+            .entry-date { align-self: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="resume-container">
+        
+        <!-- Profile Header Branding Frame -->
+        <header>
+            <img src="assets/img/avatar.jpg" alt="Arief Budiman Photo" class="profile-img">
+            <div class="header-text">
+                <h1>Arief Budiman</h1>
+                <div class="title">Full Stack Developer</div>
+            </div>
+        </header>
+
+        <!-- Reachable Contacts Ribbon -->
+        <div class="contact-bar">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+4915734413268</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:ariefbudiman0112@gmail.com">ariefbudiman0112@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-globe"></i>
+                <a href="https://ariefbudiman0112.github.io/portfolio/" target="_blank">ariefbudiman0112.github.io/portfolio</a>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>36433 Bad Salzungen, Germany</span>
+            </div>
+        </div>
+
+        <!-- Master Split Two Column Layout Template Wrapper -->
+        <div class="main-layout">
+            
+            <!-- Left Grid Track: Summary, Frameworks, Languages, Credentials -->
+            <div class="left-col">
+                
+                <!-- Summary Box -->
+                <div class="profile-box">
+                    <div class="section-title"><i class="fas fa-user-tie"></i>Profile</div>
+                    <p class="profile-text">
+                        Computer Scientist (M.Sc. cand.) in the final phase of a Master's thesis. Possesses solid professional experience in ASP.NET and PHP development, with a specialized focus on modern full-stack architectures (React JS). Known for rapid technological adaptability and sharp analytical skills.
+                    </p>
+                </div>
+
+                <!-- Skill Tags Grid -->
+                <div class="skills-box">
+                    <div class="section-title"><i class="fas fa-laptop-code"></i>Skills</div>
+                    <div class="skills-container">
+                        <div class="skill-group">
+                            <div class="skill-group-title">BACKEND & CORE</div>
+                            <div class="skill-tags">
+                                <span class="tag">C#</span><span class="tag">ASP.NET</span><span class="tag">PHP</span><span class="tag">Python</span><span class="tag">SQL</span>
+                            </div>
+                        </div>
+                        <div class="skill-group">
+                            <div class="skill-group-title">FRONTEND & WEB</div>
+                            <div class="skill-tags">
+                                <span class="tag">ReactJs</span><span class="tag">JavaScript</span><span class="tag">HTML5</span><span class="tag">CSS3</span>
+                            </div>
+                        </div>
+                        <div class="skill-group">
+                            <div class="skill-group-title">TOOLS & INFRASTRUCTURE</div>
+                            <div class="skill-tags">
+                                <span class="tag">Git</span><span class="tag">ServiceNow</span><span class="tag">REST APIs</span><span class="tag">Redux</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extra Accreditation Meta items -->
+                <div class="certs-box">
+                    <div class="section-title"><i class="fas fa-certificate"></i>Certifications</div>
+                    <div class="meta-list">
+                        <div class="meta-item"><strong>Certificates:</strong> React JS, Python for Data Science (Kodehive), Data Scientist (Binar Academy)</div>
+                        <div class="meta-item"><strong>Teaching Assistant:</strong> Fachhochschule Südwestfalen, Soest (2016)</div>
+                        <div class="meta-item"><strong>Web Developer Intern:</strong> PT Bonet (2014 - 2015)</div>
+                    </div>
+                </div>
+
+                <!-- Language Meta Fields Rows -->
+                <div class="languages-box">
+                    <div class="section-title"><i class="fas fa-language"></i>Languages</div>
+                    <div class="meta-list">
+                        <div class="meta-item"><strong>Indonesian:</strong> Native</div>
+                        <div class="meta-item"><strong>English:</strong> Fluent (B2/C1)</div>
+                        <div class="meta-item"><strong>German:</strong> Intermediate (B1)</div>
+                    </div>
+                </div>
+
+            </div> <!-- End Left Column -->
+
+            <!-- Right Grid Track: Chronological Work History & Academic Degrees -->
+            <div class="right-col">
+                
+                <!-- Professional Work History Block Grid -->
+                <div class="experience-box">
+                    <div class="section-title"><i class="fas fa-briefcase"></i>Professional Experience</div>
+                    <div class="entry-group">
+                        
+                        <!-- Role 1 -->
+                        <div class="entry">
+                            <div class="entry-header">
+                                <div class="entry-title-block">
+                                    <span class="entry-title">Full-Stack React JS Developer</span> — 
+                                    <span class="entry-company">Self-Directed Study</span>
+                                </div>
+                                <div class="entry-date">2026 - Present</div>
+                            </div>
+                            <ul class="entry-list">
+                                <li>Designing and developing dynamic web applications tailored to real-world requirements and evolving user needs.</li>
+                                <li>Implementing modular Single-Page Applications (SPA) utilizing React JS, Hooks, and Redux for optimized state management.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Role 2 -->
+                        <div class="entry">
+                            <div class="entry-header">
+                                <div class="entry-title-block">
+                                    <span class="entry-title">Operations & Facility Management Associate</span> — 
+                                    <span class="entry-company">Connect2 Service GmbH (Kaufland Branch)</span>
+                                </div>
+                                <div class="entry-date">2024 - Present</div>
+                            </div>
+                            <ul class="entry-list">
+                                <li>Maintaining high standards of facility cleanliness within designated areas under the direct supervision and coordination of Kaufland management.</li>
+                                <li>Demonstrated agile, quick-thinking problem-solving skills when addressing sudden, on-site operational tasks.</li>
+                                <li>Utilized the German language daily in a business environment, significantly improving professional communication confidence and team collaboration.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Role 3 -->
+                        <div class="entry">
+                            <div class="entry-header">
+                                <div class="entry-title-block">
+                                    <span class="entry-title">PHP Developer (Freelance)</span> — 
+                                    <span class="entry-company">PT Tara Artha Mandiri</span>
+                                </div>
+                                <div class="entry-date">2023 - 2024</div>
+                            </div>
+                            <ul class="entry-list">
+                                <li>Developed, extended, and maintained PHP-based web applications while optimizing relational SQL database queries for performance.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Role 4 -->
+                        <div class="entry">
+                            <div class="entry-header">
+                                <div class="entry-title-block">
+                                    <span class="entry-title">ServiceNow IT Support (Remote)</span> — 
+                                    <span class="entry-company">Snacc-IT GmbH</span>
+                                </div>
+                                <div class="entry-date">03/2023 - 07/2023</div>
+                            </div>
+                            <ul class="entry-list">
+                                <li>Managed technical support requests, resolved system issues, and maintained corporate IT infrastructure through the ServiceNow platform.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Role 5 -->
+                        <div class="entry">
+                            <div class="entry-header">
+                                <div class="entry-title-block">
+                                    <span class="entry-title">ASP.NET Developer & IT Support Engineer</span> — 
+                                    <span class="entry-company">PT Adicipta Inovasi Teknologi</span>
+                                </div>
+                                <div class="entry-date">2017 - 2020</div>
+                            </div>
+                            <ul class="entry-list">
+                                <li>Built core backend features using ASP.NET while collaborating with teams in an agile Scrum workspace.</li>
+                                <li>Provided standby live support to diagnose and fix application errors for an enterprise-level financial leasing system (ERP/SAP-style environment).</li>
+                                <li>Troubleshot production database issues and optimized queries using Microsoft SQL Server to maintain system performance.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Education Block Grid -->
+                <div class="education-box">
+                    <div class="section-title"><i class="fas fa-graduation-cap"></i>Education</div>
+                    <div class="entry-group">
+
+                        <!-- Education Entry 1 -->
+                        <div class="entry">
+                            <div class="entry-header">
+                                <div class="entry-title-block">
+                                    <span class="entry-title">Master of Computer Science (M.Sc.)</span> — 
+                                    <span class="entry-company">Hochschule Schmalkalden, Germany</span>
+                                </div>
+                                <div class="entry-date">2020 - Expected 2026</div>
+                            </div>
+                            <ul class="entry-list">
+                                <li>Advanced studies in Applied Computer Science, Cloud Infrastructures, and Intelligent Systems.</li>
+                                <li><strong>Thesis:</strong> Evaluating the Robustness of Knowledge Discovery Pipelines: A Comparative Study of Synthetic and Real-World Financial Survey Data.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Education Entry 2 -->
+                        <div class="entry">
+                            <div class="entry-header">
+                                <div class="entry-title-block">
+                                    <span class="entry-title">Bachelor of Information Technology (B.Sc.)</span> — 
+                                    <span class="entry-company">Swiss German University, Indonesia</span>
+                                </div>
+                                <div class="entry-date">2013 - 2017</div>
+                            </div>
+                            <ul class="entry-list">
+                                <li>Completed an international curriculum with a heavy focus on Software Engineering and Core Networking.</li>
+                                <li><strong>Thesis:</strong> Analysis of Learning Management System for Students Using the Unified Theory of Acceptance and Use of Technology (UTAUT) (Case Study: Swiss German University).</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div> <!-- End Right Column -->
+        </div> <!-- End Main Layout -->
+    </div> <!-- End Resume Container -->
+
+</body>
+
+
+</html>
+
