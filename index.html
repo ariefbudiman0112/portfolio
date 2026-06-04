@@ -726,23 +726,52 @@
         @media (max-width: 768px) {
             body { flex-direction: column; }
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: fixed;
-                bottom: 0;
                 top: auto;
-                padding: 10px;
-                flex-direction: row;
-            }
-            .sidebar-links {
-                flex-direction: row;
+                bottom: 0; /* Aligns menu bar along the screen floor */
+                left: 0;
                 width: 100%;
-                justify-content: space-around;
+                height: 60px; /* Safe, compact thumb height constraint */
+                padding: 0;
+                border-right: none;
+                /* border-top: 1px solid #dadce0; */
+                /* background-color: rgba(255, 255, 255, 0.95); */
+                backdrop-filter: blur(10px); /* Modern blur overlay texture background */
+                box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            }
+
+            .sidebar-links {
+                flex-direction: row; /* Converts vertical list to horizontal layout rows */
+                justify-content: space-around; /* /* Distributes links evenly across screen width */
+                align-items: center;
+                height: 100%;
                 gap: 0;
             }
+
+            .sidebar-links li {
+                flex: 1; /* Each link takes equal horizontal space */
+                height: 100%;
+            }
+
             .sidebar-links a {
-                font-size: 0.9rem;
-                padding: 8px;
+                flex-direction: column; /* Stack font icon over the text label vertically */
+                justify-content: center;
+                gap: 4px;
+                padding: 6px 0;
+                height: 100%;
+                font-size: 0.75rem; /* Downsized font layer text baseline for ergonomics */
+                font-weight: 600;
+                border-radius: 0;
+                background-color: transparent !important;
+            }
+
+            .sidebar-links a i {
+                font-size: 1.2rem; /* Keeps action icons large and easy to tap */
+                width: auto;
+            }
+
+            /* Active Highlight Line for Mobile View */
+            .sidebar-links a.active {
+                color: #0066da;
             }
             main {
                 margin-left: 0;
