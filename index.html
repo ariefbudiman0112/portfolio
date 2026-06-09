@@ -870,6 +870,29 @@
             height: 20px;
         }
 
+        .timeline-action {
+    margin-top: 14px;
+    padding-left: 20px;
+}
+
+.timeline-btn {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: transparent;
+    color: #007acc; /* Match your layout primary highlight */
+    border: 1px solid #007acc;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.timeline-btn:hover {
+    background-color: #007acc;
+    color: #ffffff;
+}
+
     </style>
 </head>
 <body>
@@ -947,7 +970,7 @@
                                 <span class="skill-badge">ASP.NET</span>
                                 <span class="skill-badge">PHP</span>
                                 <span class="skill-badge">Python</span>
-                                                                <span class="skill-badge">SQL</span>
+                                <span class="skill-badge">SQL</span>
                             </div>
                         </div>
                         <div class="skills-group">
@@ -972,7 +995,7 @@
                 </div>
 
                 <!-- History Content Tab -->
-                <div id="history-tab" class="tab-content">
+                 <div id="history-tab" class="tab-content">
                     <div class="history-timeline">
                         <div class="timeline-category">
                             <h3 data-tr="hist_exp_title">Professional Experience</h3>
@@ -987,6 +1010,9 @@
                                     <li data-tr="exp1_b2">Implementing modular Single-Page Applications (SPA) utilizing React JS, Hooks, and Redux for optimized state management.</li>
                                     <li>Developing responsive, user-centric web interfaces with a focus on seamless RESTful API integrations.</li>
                                 </ul>
+                                <!-- <div class="timeline-action">
+                                    <a href="#" target="_blank" rel="noopener noreferrer" class="timeline-btn" data-tr="exp1_link">Visit Website</a>
+                                </div> -->
                             </div>
 
                             <!-- Role 2: Operations Associate (Connect2 / Kaufland) -->
@@ -999,6 +1025,9 @@
                                     <li>Demonstrated agile, quick-thinking problem-solving skills when addressing sudden, on-site operational tasks.</li>
                                     <li data-tr="exp2_b2">Utilized the German language daily in a business environment, significantly improving professional communication confidence and team collaboration.</li>
                                 </ul>
+                                <div class="timeline-action">
+                                    <a href="https://connect2.group/" target="_blank" rel="noopener noreferrer" class="timeline-btn" data-tr="exp2_link">Visit Connect2 Gmbh</a>
+                                </div>
                             </div>
 
                             <!-- Role 3: PHP Developer -->
@@ -1009,6 +1038,9 @@
                                 <ul>
                                     <li data-tr="exp4_b1">Developed, extended, and maintained PHP-based web applications while optimizing relational SQL database queries for performance.</li>
                                 </ul>
+                                <!-- <div class="timeline-action">
+                                    <a href="#" target="_blank" rel="noopener noreferrer" class="timeline-btn" data-tr="exp4_link">Visit Company Website</a>
+                                </div> -->
                             </div>
 
                             <!-- Role 4: ServiceNow IT Support -->
@@ -1019,6 +1051,9 @@
                                 <ul>
                                     <li data-tr="exp3_b1">Managed technical support requests, resolved system issues, and maintained corporate IT infrastructure through the ServiceNow platform.</li>
                                 </ul>
+                                <div class="timeline-action">
+                                    <a href="https://www.snacc-it.de/" target="_blank" rel="noopener noreferrer" class="timeline-btn" data-tr="exp3_link">Visit Snacc-IT</a>
+                                </div>
                             </div>
 
                             <!-- Role 5: ASP.NET Developer -->
@@ -1031,6 +1066,9 @@
                                     <li>Provided standby live support to diagnose and fix application errors for an enterprise-level financial leasing system (ERP/SAP-style environment).</li>
                                     <li>Troubleshot production database issues and optimized queries using Microsoft SQL Server to maintain system performance.</li>
                                 </ul>
+                                <div class="timeline-action">
+                                    <a href="https://www.ad-ins.com/" target="_blank" rel="noopener noreferrer" class="timeline-btn" data-tr="exp5_link">Visit Adicipta</a>
+                                </div>
                             </div>
                         </div>
                         
@@ -1046,6 +1084,9 @@
                                     <li data-tr="edu1_b1">Advanced studies in Applied Computer Science, Software Architecture, and Advanced Database Systems.</li>
                                     <li data-tr="edu1_b2"><strong>Master's Thesis:</strong> Evaluating the Robustness of Knowledge Discovery Pipelines: A Comparative Study of Synthetic and Real-World Financial Survey Data.</li>
                                 </ul>
+                                <div class="timeline-action">
+                                    <a href="https://www.hs-schmalkalden.de/" target="_blank" rel="noopener noreferrer" class="timeline-btn" data-tr="edu1_link">Visit Hochschule Schmalkalden</a>
+                                </div>
                             </div>
                             
                             <!-- Education 2: Bachelor's Degree -->
@@ -1057,6 +1098,9 @@
                                     <li data-tr="edu2_b1">Successfully completed degree with a strong focus on Software Engineering, IT Infrastructures, and System Analysis within an international curriculum.</li>
                                     <li data-tr="edu2_b2"><strong>Bachelor's Thesis:</strong> Analysis of Learning Management System for Students Using the Unified Theory of Acceptance and Use of Technology (UTAUT) (Case Study: Swiss German University).</li>
                                 </ul>
+                                <div class="timeline-action">
+                                    <a href="https://www.sgu.ac.id/" target="_blank" rel="noopener noreferrer" class="timeline-btn" data-tr="edu2_link">Visit SGU</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1171,6 +1215,15 @@
             about_content: "Based in Germany, I specialize in Software Engineering and IT Solutions. I turn ideas into reality through clean data layers, strong architectural code patterns, and pixel-perfect presentation execution.",
             skills_backend: "Backend & Core", skills_frontend: "Frontend & Web", skills_tools: "Tools & Infrastructure",
             hist_exp_title: "Professional Experience", hist_edu_title: "Education",
+
+            // Timeline Links English
+            // exp1_link: "Visit Website",
+            exp2_link: "Visit Connect2 Gmbh",
+            exp4_link: "Visit PT Tara Artha Mandiri",
+            exp3_link: "Visit Snacc-IT",
+            exp5_link: "Visit PT Adicipta Inovasi",
+            edu1_link: "Visit HS Schmalkalden",
+            edu2_link: "Visit Swiss German University",
             
             // Full-Stack React Developer
             exp1_title: "Full-Stack React JS Developer (Self-Directed Study)",
@@ -1221,7 +1274,17 @@
             about_content: "Ansässig in Deutschland, spezialisiert auf Software Engineering und IT-Lösungen. Ich lasse Ideen durch saubere Datenschichten, robuste Architekturmuster und pixelgenaue Oberflächenarchitektur Realität werden.",
             skills_backend: "Backend & Kernkompetenzen", skills_frontend: "Frontend & Web", skills_tools: "Werkzeuge & Infrastruktur",
             hist_exp_title: "Berufserfahrung", hist_edu_title: "Ausbildung",
-            
+
+            // Timeline Links German
+            // exp1_link: "Landingpage besuchen",
+            exp2_link: "Connect2 Gmbh besuchen",
+            exp4_link: "PT Tara Artha Mandiri besuchen",
+            exp3_link: "Snacc-IT besuchen",
+            exp4_link: "PT Adicipta Inovasi besuchen", // Fixed structural matching to link mapping
+            exp5_link: "PT Adicipta Inovasi besuchen",
+            edu1_link: "HS Schmalkalden besuchen",
+            edu2_link: "Swiss German University besuchen",
+
             // Full-Stack React Developer (DE)
             exp1_title: "Full-Stack React JS-Entwickler (Selbststudium)",
             exp1_b1: "Konzeption und Entwicklung dynamischer Webanwendungen, die auf reale Anforderungen und sich entwickelnde Benutzerbedürfnisse zugeschnitten sind.",
