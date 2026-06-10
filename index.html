@@ -871,27 +871,86 @@
         }
 
         .timeline-action {
-    margin-top: 14px;
-    padding-left: 20px;
-}
+            margin-top: 14px;
+            padding-left: 20px;
+        }
 
-.timeline-btn {
-    display: inline-block;
-    padding: 6px 14px;
-    background-color: transparent;
-    color: #007acc; /* Match your layout primary highlight */
-    border: 1px solid #007acc;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
+        .timeline-btn {
+            display: inline-block;
+            padding: 6px 14px;
+            background-color: transparent;
+            color: #007acc; /* Match your layout primary highlight */
+            border: 1px solid #007acc;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
 
-.timeline-btn:hover {
-    background-color: #007acc;
-    color: #ffffff;
-}
+        .timeline-btn:hover {
+            background-color: #007acc;
+            color: #ffffff;
+        }
+
+        /* Container arrangement styles */
+        .home-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        /* Base properties for the Certificate button */
+        .btn-cert {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background-color: transparent;
+            color: #1c1917; /* Use your existing text color */
+            border: 2px solid #1c1917;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.25s ease-in-out;
+            cursor: pointer;
+        }
+
+        /* Hover and active micro-interactions */
+        .btn-cert:hover {
+            background-color: #1c1917; /* Invert color mapping */
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(28, 25, 23, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .btn-cert:active {
+            transform: translateY(0);
+        }
+
+        /* Icon configuration properties */
+        .cert-icon, .arrow-icon {
+            transition: transform 0.25s ease;
+        }
+
+        .btn-cert:hover .arrow-icon {
+            transform: translate(2px, -2px);
+        }
+
+        /* Responsive adjustments for narrow smartphone devices */
+        @media (max-width: 576px) {
+            .home-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-resume, .btn-cert {
+                width: 100%; /* Spans full width for easier mobile tapping target */
+            }
+        }
 
     </style>
 </head>
@@ -935,16 +994,29 @@
                     <span class="tag"><i class="fa-solid fa-location-dot"></i> Open to Relocate</span>
                 </div>
                 
-                <!-- Updated High-Engagement Resume Button -->
-                <a href="resume.html" target="_blank" rel="noopener noreferrer" class="btn-resume" data-tr="home_resume_btn">
-                    <svg class="resume-icon" viewBox="0 0 24 24" xmlns="http://w3.org">
-                        <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                    </svg>
-                    <span>View Resume</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
-                </a>
+                <!-- NEW: Action buttons flex-group wrapper container -->
+                <div class="home-actions">
+                    <!-- Updated High-Engagement Resume Button -->
+                    <a href="resume.html" target="_blank" rel="noopener noreferrer" class="btn-resume" data-tr="home_resume_btn">
+                        <svg class="resume-icon" viewBox="0 0 24 24" xmlns="http://w3.org">
+                            <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        <span>View Resume</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+                    </a>
+
+                    <!-- NEW: High-Engagement Check Certificates Button -->
+                    <a href="https://drive.google.com/drive/folders/1TtJltU2dNe395ZCEMdzVcLrMdh6unKyk?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn-cert" data-tr="home_certs_btn">
+                        <svg class="cert-icon" viewBox="0 0 24 24" xmlns="http://w3.org" style="width: 18px; height: 18px; fill: currentColor; shrink: 0;">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+                        </svg>
+                        <span>Check Certificates</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+                    </a>
+                </div>
             </div>
         </section>
+
 
         <!-- IDENTITY & JOURNEY SECTION -->
         <section id="journey">
